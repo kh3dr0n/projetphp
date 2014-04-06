@@ -26,4 +26,8 @@ class Avion {
      * @Assert\NotBlank()
      */
     private $capacite;
+    /**
+     * @ORM\Column(type="string",length=255)
+     */
+    private $model;
 } 
