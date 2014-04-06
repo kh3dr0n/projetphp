@@ -1,0 +1,7 @@
+parameters:
+#    siteadmin.example.class: site\adminBundle\Example
+
+services:
+#    siteadmin.example:
+#        class: %siteadmin.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

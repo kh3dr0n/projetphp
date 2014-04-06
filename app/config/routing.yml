@@ -1,0 +1,8 @@
+sitereservation:
+    resource: "@sitereservationBundle/Resources/config/routing.yml"
+    prefix:   /
+
+siteadmin:
+    resource: "@siteadminBundle/Resources/config/routing.yml"
+    prefix:   /admin
+

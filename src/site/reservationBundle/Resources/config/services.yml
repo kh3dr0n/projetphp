@@ -1,0 +1,7 @@
+parameters:
+#    sitereservation.example.class: site\reservationBundle\Example
+
+services:
+#    sitereservation.example:
+#        class: %sitereservation.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
