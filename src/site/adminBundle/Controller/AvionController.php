@@ -8,10 +8,46 @@
 
 namespace site\adminBundle\Controller;
 
+use site\adminBundle\Forms\AvionForm;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use site\adminBundle\Entity\Avion;
 
 class AvionController extends Controller{
-    public function ListerAction(){
-        return $this->render('siteadminBundle:Avion:lister.html.twig');
+    public function listerAction(){
+
+        $em = $this->container->get('doctrine')->getEntityManager();
+        $avions = $em->getRepository('siteadminBundle:avion')->FindAll();
+
+
+
+        return $this->render('siteadminBundle:Avion:lister.html.twig',array(
+            'avions'=>$avions
+        ));
     }
+    public function ajouterAction(){
+
+        $msg = "";
+        $avion = new Avion();
+        $form = $this->container->get('form.factory')->create(new AvionForm(), $avion);
+        $request = $this->container->get('request');
+        if($request->getMethod() == "POST"){
+            $form->bind($request);
+            if($form->isValid()){
+                $em = $this->container->get('doctrine')->getEntityManager();
+                $em->persist($avion);
+                $em->flush();
+                $msg = "Bien Ajoutée";
+            }
+        }
+
+        return $this->container->get('templating')->renderResponse('siteadminBundle:Avion:ajouter.html.twig',
+            array(
+                'form'=>$form->createView(),
+                'msg'=>$msg
+
+            )
+        );
+    }
+
+
 } 

@@ -261,49 +261,21 @@
                             </tr>
                             </thead>
                             <tbody>
+
+                            {% for a in avions %}
                             <tr class="odd ">
-                                <td>150</td>
-                                <td>AirBus 1149</td>
-                                <td class="center">53</td>
-                                <td>Disponible</td>
-                                <td class="center"><a href="#"><span class="fa fa-times"></span>Suppurimer</a></td>
-                                <td class="center"><a href="#"><span class="fa fa-edit"></span> Modifier</a></td>
-                            </tr>
-                            <tr class="odd ">
-                                <td>250</td>
-                                <td>AirBus B150</td>
-                                <td class="center">33</td>
-                                <td>Non disponible</td>
+                                <td>{{ a.capacite }}</td>
+                                <td>{{ a.model }}</td>
+                                <td class="center">-</td>
+                                <td>-</td>
                                 <td class="center"><a href="#"><span class="fa fa-times"></span>Suppurimer</a></td>
                                 <td class="center"><a href="#"><span class="fa fa-edit"></span> Modifier</a></td>
                             </tr>
 
-                            <tr class="odd ">
-                                <td>50</td>
-                                <td>AirBus P50</td>
-                                <td class="center">30</td>
-                                <td>Disponible</td>
-                                <td class="center"><a href="#"><span class="fa fa-times"></span>Suppurimer</a></td>
-                                <td class="center"><a href="#"><span class="fa fa-edit"></span> Modifier</a></td>
-                            </tr>
+                            {% endfor %}
 
-                            <tr class="odd ">
-                                <td>150</td>
-                                <td>AirBus 1149</td>
-                                <td class="center">53</td>
-                                <td>Disponible</td>
-                                <td class="center"><a href="#"><span class="fa fa-times"></span>Suppurimer</a></td>
-                                <td class="center"><a href="#"><span class="fa fa-edit"></span> Modifier</a></td>
-                            </tr>
 
-                            <tr class="odd ">
-                                <td>150</td>
-                                <td>AirBus 1149</td>
-                                <td class="center">53</td>
-                                <td>Disponible</td>
-                                <td class="center"><a href="#"><span class="fa fa-times"></span>Suppurimer</a></td>
-                                <td class="center"><a href="#"><span class="fa fa-edit"></span> Modifier</a></td>
-                            </tr>
+
 
                             </tbody>
                         </table>

@@ -1,0 +1,12 @@
+
+<h1>Ajouter un avion</h1>
+
+{% if msg %}
+    <p>{{ msg }}</p>
+{% endif %}
+
+<form action="" method="post" {{ form_enctype(form) }}>
+    {{ form_widget(form) }}
+    <input type="submit" />
+</form>
+<p><a href="{{ path('siteadmin_avion_lister') }}">Retour à la liste des Avions</a></p>

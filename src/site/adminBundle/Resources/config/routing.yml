@@ -4,6 +4,17 @@ siteadmin_homepage:
 siteadmin_avion_lister:
     pattern: /avion/
     defaults: { _controller: siteadminBundle:Avion:lister }
+siteadmin_avion_ajouter:
+    pattern: /avion/ajouter
+    defaults: { _controller: siteadminBundle:Avion:ajouter }
+
+
+
+
+
+
+
+
 #FOS
 fos_user_security:
     resource: "routing/security.xml"
