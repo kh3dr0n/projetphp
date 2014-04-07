@@ -37,4 +37,83 @@ class Vol {
      */
     private $destination;
 
-} 
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set date
+     *
+     * @param \DateTime $date
+     * @return Vol
+     */
+    public function setDate($date)
+    {
+        $this->date = $date;
+
+        return $this;
+    }
+
+    /**
+     * Get date
+     *
+     * @return \DateTime 
+     */
+    public function getDate()
+    {
+        return $this->date;
+    }
+
+    /**
+     * Set destination
+     *
+     * @param string $destination
+     * @return Vol
+     */
+    public function setDestination($destination)
+    {
+        $this->destination = $destination;
+
+        return $this;
+    }
+
+    /**
+     * Get destination
+     *
+     * @return string 
+     */
+    public function getDestination()
+    {
+        return $this->destination;
+    }
+
+    /**
+     * Set Avion
+     *
+     * @param \site\adminBundle\Entity\Avion $avion
+     * @return Vol
+     */
+    public function setAvion(\site\adminBundle\Entity\Avion $avion = null)
+    {
+        $this->Avion = $avion;
+
+        return $this;
+    }
+
+    /**
+     * Get Avion
+     *
+     * @return \site\adminBundle\Entity\Avion 
+     */
+    public function getAvion()
+    {
+        return $this->Avion;
+    }
+}

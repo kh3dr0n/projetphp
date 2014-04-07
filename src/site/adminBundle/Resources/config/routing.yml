@@ -1,6 +1,9 @@
 siteadmin_homepage:
     pattern:  /
     defaults: { _controller: siteadminBundle:Default:index }
+siteadmin_avion_lister:
+    pattern: /avion/
+    defaults: { _controller: siteadminBundle:Avion:lister }
 #FOS
 fos_user_security:
     resource: "routing/security.xml"
