@@ -52,4 +52,55 @@ class AvionController extends Controller{
     }
 
 
+    public function modifierAction($id = null){
+
+        $msg = "";
+        $em = $this->container->get('doctrine')->getEntityManager();
+
+
+        if(isset($id)){
+            $avion = $em->find('siteadminBundle:Avion', $id);
+
+            if (!$avion)
+            {
+                $msg='Aucun avion trouvé';
+            }
+
+        }else{
+            $avion = new Avion();
+        }
+        $form = $this->container->get('form.factory')->create(new AvionForm(), $avion);
+        $request = $this->container->get('request');
+        if($request->getMethod() == "POST"){
+            $form->bind($request);
+            if($form->isValid()){
+
+                $em->persist($avion);
+                $em->flush();
+
+                return $this->redirect($this->generateUrl('siteadmin_avion_lister'));
+
+            }
+        }
+
+        return $this->container->get('templating')->renderResponse('siteadminBundle:Avion:modifier.html.twig',
+            array(
+                'form'=>$form->createView()
+
+            )
+        );
+    }
+    function supprimerAction($id = null){
+        $em = $this->container->get('doctrine')->getEntityManager();
+        $avion = $em->find('siteadminBundle:Avion',$id);
+        if(!$avion){
+            throw new NotFoundHttpException("Acteur non trouvé");
+        }
+
+        $em->remove($avion);
+        $em->flush();
+        return $this->redirect($this->generateUrl('siteadmin_avion_lister'));
+    }
+
+
 } 

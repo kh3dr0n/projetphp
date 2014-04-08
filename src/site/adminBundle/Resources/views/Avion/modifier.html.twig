@@ -11,7 +11,17 @@
     <title>Airena | ADMINISTRATION</title>
 
     <link href="{{ asset('bundles/siteadmin/css/style.default.css')}}" rel="stylesheet">
-    <link href="{{ asset('bundles/siteadmin/css/jquery.datatables.css')}}" rel="stylesheet">
+
+
+
+
+
+
+    <link rel="stylesheet" href="{{ asset('bundles/siteadmin/css/bootstrap-fileupload.min.css')}}" />
+    <link rel="stylesheet" href="{{ asset('bundles/siteadmin/css/bootstrap-timepicker.min.css')}}" />
+    <link rel="stylesheet" href="{{ asset('bundles/siteadmin/css/jquery.tagsinput.css')}}" />
+    <link rel="stylesheet" href="{{ asset('bundles/siteadmin/css/colorpicker.css')}}" />
+    <link rel="stylesheet" href="{{ asset('bundles/siteadmin/css/dropzone.css')}}" />
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -233,7 +243,7 @@
 
     <div class="pageheader">
         <h2><i class="fa fa fa-plane"></i> Avions
-            <span>Lister</span>
+            <span>Modifier</span>
         </h2>
     </div>
 
@@ -242,57 +252,66 @@
 
 
 
-        <div class="row">
-            <div class="panel panel-default">
 
-                <div class="panel-body">
-                    <h5 class="subtitle mb5">Liste d'avions</h5>
+        <div class="panel panel-default">
 
-                {{ msg }}
-                    <div class="table-responsive">
-                        <table class="table" id="table1">
-                            <thead>
-                            <tr>
-                                <th>Capacité</th>
-                                <th>Model</th>
-                                <th>Nombre de vols</th>
-                                <th>Disponibilité</th>
-                                <th></th>
-                                <th></th>
-                            </tr>
-                            </thead>
-                            <tbody>
-
-                            {% for a in avions %}
-                            <tr class="odd ">
-                                <td>{{ a.capacite }}</td>
-                                <td>{{ a.model }}</td>
-                                <td class="center">-</td>
-                                <td>-</td>
-                                <td class="center"><a href="{{ path('siteadmin_avion_supprimer',{'id':a.id}) }}"><span class="fa fa-times"></span>Suppurimer</a></td>
-                                <td class="center"><a href="{{ path('siteadmin_avion_modifier',{'id':a.id}) }}"><span class="fa fa-edit"></span> Modifier</a></td>
-                            </tr>
-
-                            {% endfor %}
-
-
-
-
-                            </tbody>
-                        </table>
-                    </div><!-- table-responsive -->
-
-
-                </div><!-- panel-body -->
+            <div class="panel-body ">
+                <h5 class="subtitle mb5">Modifier avions</h5>
 
 
 
 
 
-            </div>
+
+
+                <form class="form-horizontal form-bordered" action="" method="post" {{ form_enctype(form) }}>
+
+
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">Capacité</label>
+                        <div class="col-sm-6">
+                            <!-- <input type="text" placeholder="Default Input" class="form-control" /> -->
+                            {{ form_widget(form.capacite) }}
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">Model</label>
+                        <div class="col-sm-6">
+                            <!-- <input type="text" placeholder="Default Input" class="form-control" /> -->
+                            {{ form_widget(form.model) }}
+                        </div>
+                    </div>
+
+
+                    {{ form_widget(form._token) }}
+                    <div class="row">
+                        <div class="col-sm-6 col-sm-offset-3">
+                            <input type="submit" value="Modifier" class="btn btn-primary">&nbsp;
+                            <button class="btn btn-default">Annuler</button>
+                        </div>
+                    </div>
+
+                </form>
+                <p><a href="{{ path('siteadmin_avion_lister') }}">Retour à la liste des Avions</a></p>
+
+
+            </div><!-- panel-body -->
+
+
+
+
+
+
+
 
 
         </div>
+
+
+
 
 
 
@@ -333,55 +352,18 @@
 
 
 <script>
-    jQuery(document).ready(function() {
-
-        jQuery('#table1').dataTable({
-            "aoColumnDefs": [
-                { "bSortable": false, "aTargets": [ 4,5 ] }
-            ],
-
-            "oLanguage": {
-                "oPaginate": {
-                    "sNext": "Suivant",
-                    "sPrevious":"Précédent",
-                    "sSearch": "Chercher:",
-                    "sLengthMenu": "Afficher _MENU_",
-                    "sInfo": "De _START_ to _END_ à _TOTAL_ records",
-                }
-            }
-        });
 
 
-        // Chosen Select
-        jQuery("select").chosen({
-            'min-width': '100px',
-            'white-space': 'nowrap',
-            disable_search_threshold: 10
-        });
-
-        // Delete row in a table
-        jQuery('.delete-row').click(function(){
-            var c = confirm("Continue delete?");
-            if(c)
-                jQuery(this).closest('tr').fadeOut(function(){
-                    jQuery(this).remove();
-                });
-
-            return false;
-        });
-
-        // Show aciton upon row hover
-        jQuery('.table-hidaction tbody tr').hover(function(){
-            jQuery(this).find('.table-action-hide a').animate({opacity: 1});
-        },function(){
-            jQuery(this).find('.table-action-hide a').animate({opacity: 0});
-        });
-
-
-    });
 </script>
 
 
 </body>
 
 </html>
+
+
+
+
+
+
+

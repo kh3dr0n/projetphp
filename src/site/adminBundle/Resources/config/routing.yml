@@ -7,13 +7,12 @@ siteadmin_avion_lister:
 siteadmin_avion_ajouter:
     pattern: /avion/ajouter
     defaults: { _controller: siteadminBundle:Avion:ajouter }
-
-
-
-
-
-
-
+siteadmin_avion_modifier:
+    pattern: /avion/modifer/{id}
+    defaults: { _controller: siteadminBundle:Avion:modifier }
+siteadmin_avion_supprimer:
+    pattern: /avion/supprimer/{id}
+    defaults: { _controller: siteadminBundle:Avion:supprimer }
 
 #FOS
 fos_user_security:
