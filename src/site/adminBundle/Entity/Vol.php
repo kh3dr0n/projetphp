@@ -30,12 +30,21 @@ class Vol {
      * @Assert\NotBlank()
      */
     private $date;
+
+    /**
+     * @ORM\Column(type="integer")
+     * @Assert\NotBlank()
+     */
+    private $duree;
     /**
      * @ORM\Column(type="string",length=255)
      * @Assert\NotBlank()
      * @Assert\Length(min="3")
      */
     private $destination;
+
+
+
 
 
     /**
@@ -115,5 +124,28 @@ class Vol {
     public function getAvion()
     {
         return $this->Avion;
+    }
+
+    /**
+     * Set duree
+     *
+     * @param integer $duree
+     * @return Vol
+     */
+    public function setDuree($duree)
+    {
+        $this->duree = $duree;
+
+        return $this;
+    }
+
+    /**
+     * Get duree
+     *
+     * @return integer 
+     */
+    public function getDuree()
+    {
+        return $this->duree;
     }
 }
