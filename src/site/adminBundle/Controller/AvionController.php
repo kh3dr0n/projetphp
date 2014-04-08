@@ -21,7 +21,8 @@ class AvionController extends Controller{
 
 
         return $this->render('siteadminBundle:Avion:lister.html.twig',array(
-            'avions'=>$avions
+            'avions'=>$avions,
+            'msg'=>''
         ));
     }
     public function ajouterAction(){
@@ -36,14 +37,15 @@ class AvionController extends Controller{
                 $em = $this->container->get('doctrine')->getEntityManager();
                 $em->persist($avion);
                 $em->flush();
-                $msg = "Bien Ajoutée";
+
+                return $this->redirect($this->generateUrl('siteadmin_avion_lister'));
+
             }
         }
 
         return $this->container->get('templating')->renderResponse('siteadminBundle:Avion:ajouter.html.twig',
             array(
-                'form'=>$form->createView(),
-                'msg'=>$msg
+                'form'=>$form->createView()
 
             )
         );
