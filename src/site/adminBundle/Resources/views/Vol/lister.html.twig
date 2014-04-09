@@ -68,20 +68,20 @@
         <ul class="nav nav-pills nav-stacked nav-bracket">
             <li class=""><a href="{{ path('siteadmin_homepage') }}"><i class="fa fa-home"></i> <span>Accueil</span></a>
             </li>
-            <li class="active nav-parent"><a href="{{ path('siteadmin_avion_lister') }}"><i class="fa fa-plane"></i> <span>Avion</span></a>
+            <li class="nav-parent"><a href="{{ path('siteadmin_avion_lister') }}"><i class="fa fa-plane"></i> <span>Avion</span></a>
                 <ul class="children">
-                    <li class="active"><a href="#"><i class="fa fa-list"></i> Lister</a>
+                    <li><a href="#"><i class="fa fa-list"></i> Lister</a>
                     </li>
                     <li><a href="#"><i class="fa fa-plus"></i> Ajouter</a>
                     </li>
                 </ul>
             </li>
 
-            <li class="nav-parent"><a href=""><i class="fa fa-location-arrow"></i> <span>Vol</span></a>
+            <li class="active nav-parent"><a href=""><i class="fa fa-location-arrow"></i> <span>Vol</span></a>
                 <ul class="children">
-                    <li><a href="#"><i class="fa fa-list"></i> Lister</a>
+                    <li class="active"><a href="{{ path('siteadmin_vol_lister') }}"><i class="fa fa-list"></i> Lister</a>
                     </li>
-                    <li><a href="#"><i class="fa fa-plus"></i> Ajouter</a>
+                    <li><a href="{{ path('siteadmin_vol_ajouter') }}"><i class="fa fa-plus"></i> Ajouter</a>
                     </li>
                 </ul>
             </li>
@@ -232,7 +232,7 @@
 
 
     <div class="pageheader">
-        <h2><i class="fa fa fa-plane"></i> Avions
+        <h2><i class="fa fa fa-location-arrow""></i> Vols
             <span>Lister</span>
         </h2>
     </div>
@@ -246,25 +246,36 @@
             <div class="panel panel-default">
 
                 <div class="panel-body">
-                    <h5 class="subtitle mb5">Liste d'avions</h5>
+                    <h5 class="subtitle mb5">Liste de vols</h5>
 
                 {{ msg }}
                     <div class="table-responsive">
                         <table class="table" id="table1">
-                           <!-- <thead>
+                           <thead>
                             <tr>
-                                <th>Capacité</th>
-                                <th>Model</th>
-                                <th>Nombre de vols</th>
-                                <th>Disponibilité</th>
+                                <th>Id</th>
+                                <th>Date</th>
+                                <th>heure</th>
+                                <th>Durée</th>
+                                <th>Destination</th>
+                                <th>Avion id</th>
                                 <th></th>
                                 <th></th>
                             </tr>
-                            </thead> -->
+                            </thead>
                             <tbody>
 
                             {% for a in vols %}
-                                  {{ a }}
+                                <tr>
+                                <td>{{ a.id }}</td>
+                                <td>{{ a.date|date('Y-m-d') }}</td>
+                                <td>{{ a.heure|date('H-i') }}</td>
+                                <td>{{ a.duree }}</td>
+                                <td>{{ a.destination }}</td>
+                                <td>{{ a.avion.id }}</td>
+                                    <td class="center"><a href="#"><span class="fa fa-times"></span>Suppurimer</a></td>
+                                    <td class="center"><a href="#"><span class="fa fa-edit"></span> Modifier</a></td>
+                                </tr>
 
                             {% endfor %}
 
@@ -330,7 +341,7 @@
 
         jQuery('#table1').dataTable({
             "aoColumnDefs": [
-                { "bSortable": false, "aTargets": [ 4,5 ] }
+                { "bSortable": false, "aTargets": [ 6,7 ] }
             ],
 
             "oLanguage": {

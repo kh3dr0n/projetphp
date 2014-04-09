@@ -20,8 +20,9 @@ class VolController extends Controller{
 
 
 
-        return $this->render('siteadminBundle:vol:list.html.twig',array(
-            'vols'=>$vols
+        return $this->render('siteadminBundle:vol:lister.html.twig',array(
+            'vols'=>$vols,
+            'msg'=>''
         ));
     }
     function ajouterAction(){
