@@ -251,7 +251,7 @@
                 {{ msg }}
                     <div class="table-responsive">
                         <table class="table" id="table1">
-                            <thead>
+                           <!-- <thead>
                             <tr>
                                 <th>Capacité</th>
                                 <th>Model</th>
@@ -260,18 +260,11 @@
                                 <th></th>
                                 <th></th>
                             </tr>
-                            </thead>
+                            </thead> -->
                             <tbody>
 
-                            {% for a in avions %}
-                            <tr class="odd ">
-                                <td>{{ a.capacite }}</td>
-                                <td>{{ a.model }}</td>
-                                <td class="center">-</td>
-                                <td>-</td>
-                                <td class="center"><a href="{{ path('siteadmin_avion_supprimer',{'id':a.id}) }}"><span class="fa fa-times"></span>Suppurimer</a></td>
-                                <td class="center"><a href="{{ path('siteadmin_avion_modifier',{'id':a.id}) }}"><span class="fa fa-edit"></span> Modifier</a></td>
-                            </tr>
+                            {% for a in vols %}
+                                  {{ a }}
 
                             {% endfor %}
 

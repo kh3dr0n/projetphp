@@ -1,0 +1,8 @@
+{% for a in vols %}
+    {{ a.id }}<br>
+    {{ a.avion.id }}<br>
+    {{ a.duree }}<br>
+    {{ a.date|date('Y-m-d') }}<br>
+    {{ a.destination }}<br>
+
+{% endfor %}

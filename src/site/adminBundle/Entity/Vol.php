@@ -26,10 +26,15 @@ class Vol {
      */
     private $Avion;
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="date")
      * @Assert\NotBlank()
      */
     private $date;
+    /**
+     * @ORM\Column(type="time")
+     * @Assert\NotBlank()
+     */
+    private $heure;
 
     /**
      * @ORM\Column(type="integer")
@@ -147,5 +152,28 @@ class Vol {
     public function getDuree()
     {
         return $this->duree;
+    }
+
+    /**
+     * Set heure
+     *
+     * @param \DateTime $heure
+     * @return Vol
+     */
+    public function setHeure($heure)
+    {
+        $this->heure = $heure;
+
+        return $this;
+    }
+
+    /**
+     * Get heure
+     *
+     * @return \DateTime 
+     */
+    public function getHeure()
+    {
+        return $this->heure;
     }
 }

@@ -253,6 +253,7 @@
                         <table class="table" id="table1">
                             <thead>
                             <tr>
+                                <th>Id</th>
                                 <th>Capacité</th>
                                 <th>Model</th>
                                 <th>Nombre de vols</th>
@@ -265,6 +266,7 @@
 
                             {% for a in avions %}
                             <tr class="odd ">
+                                <td>{{ a.id }}</td>
                                 <td>{{ a.capacite }}</td>
                                 <td>{{ a.model }}</td>
                                 <td class="center">-</td>
