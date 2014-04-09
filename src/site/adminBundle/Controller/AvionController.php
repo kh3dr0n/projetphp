@@ -17,8 +17,17 @@ class AvionController extends Controller{
 
         $em = $this->container->get('doctrine')->getEntityManager();
         $avions = $em->getRepository('siteadminBundle:avion')->FindAll();
+        $vols = $em->getRepository('siteadminBundle:vol')->FindAll();
 
 
+
+        foreach($avions as $a){
+            $a->nbrvol = 0;
+            foreach($vols as $v){
+                if($v->getAvion()->getId() == $a->getId())
+                    $a->nbrvol++;
+            }
+        }
 
         return $this->render('siteadminBundle:Avion:lister.html.twig',array(
             'avions'=>$avions,
