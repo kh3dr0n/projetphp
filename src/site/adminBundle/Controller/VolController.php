@@ -89,7 +89,16 @@ class VolController extends Controller{
         );
 
     }
-    function supprimerAction(){
+    function supprimerAction($id = null){
+        $em = $this->container->get('doctrine')->getEntityManager();
+        $vol = $em->find('siteadminBundle:vol',$id);
+        if(!$vol){
+            throw new NotFoundHttpException("Vol non trouvé");
+        }
+
+        $em->remove($vol);
+        $em->flush();
+        return $this->redirect($this->generateUrl('siteadmin_vol_lister'));
 
     }
 } 

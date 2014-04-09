@@ -22,6 +22,9 @@ siteadmin_vol_ajouter:
 siteadmin_vol_modifier:
     pattern: /vol/modifier/{id}
     defaults: { _controller: siteadminBundle:Vol:modifier }
+siteadmin_vol_supprimer:
+    pattern: /vol/supprimer/{id}
+    defaults: { _controller: siteadminBundle:Vol:supprimer }
 
 #FOS
 fos_user_security:
