@@ -50,7 +50,43 @@ class VolController extends Controller{
         );
 
     }
-    function modifierAction(){
+    function modifierAction($id = null){
+        $msg = "";
+        $em = $this->container->get('doctrine')->getEntityManager();
+
+        if(isset($id)){
+            $vol = $em->find('siteadminBundle:Vol', $id);
+
+            if (!$vol)
+            {
+                $msg='Aucun avion trouvé';
+            }
+
+        }else{
+            $vol = new Vol();
+        }
+
+
+        $form = $this->container->get('form.factory')->create(new VolForm(), $vol);
+        $request = $this->container->get('request');
+        if($request->getMethod() == "POST"){
+            $form->bind($request);
+            if($form->isValid()){
+                $em = $this->container->get('doctrine')->getEntityManager();
+                $em->persist($vol);
+                $em->flush();
+
+                return $this->redirect($this->generateUrl('siteadmin_vol_lister'));
+
+            }
+        }
+
+        return $this->container->get('templating')->renderResponse('siteadminBundle:vol:modifier.html.twig',
+            array(
+                'form'=>$form->createView()
+
+            )
+        );
 
     }
     function supprimerAction(){

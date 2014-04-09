@@ -19,6 +19,9 @@ siteadmin_vol_lister:
 siteadmin_vol_ajouter:
     pattern: /vol/ajouter
     defaults: { _controller: siteadminBundle:Vol:ajouter }
+siteadmin_vol_modifier:
+    pattern: /vol/modifier/{id}
+    defaults: { _controller: siteadminBundle:Vol:modifier }
 
 #FOS
 fos_user_security:
