@@ -11,7 +11,17 @@
     <title>Airena | ADMINISTRATION</title>
 
     <link href="{{ asset('bundles/siteadmin/css/style.default.css')}}" rel="stylesheet">
-    <link href="{{ asset('bundles/siteadmin/css/jquery.datatables.css')}}" rel="stylesheet">
+
+
+
+
+
+
+    <link rel="stylesheet" href="{{ asset('bundles/siteadmin/css/bootstrap-fileupload.min.css')}}" />
+    <link rel="stylesheet" href="{{ asset('bundles/siteadmin/css/bootstrap-timepicker.min.css')}}" />
+    <link rel="stylesheet" href="{{ asset('bundles/siteadmin/css/jquery.tagsinput.css')}}" />
+    <link rel="stylesheet" href="{{ asset('bundles/siteadmin/css/colorpicker.css')}}" />
+    <link rel="stylesheet" href="{{ asset('bundles/siteadmin/css/dropzone.css')}}" />
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -77,20 +87,20 @@
                 </ul>
             </li>
 
-            <li class="active nav-parent"><a href=""><i class="fa fa-location-arrow"></i> <span>Vol</span></a>
-                <ul class="children">
-                    <li class="active"><a href="{{ path('siteadmin_vol_lister') }}"><i class="fa fa-list"></i> Lister</a>
-                    </li>
-                    <li><a href="{{ path('siteadmin_vol_ajouter') }}"><i class="fa fa-plus"></i> Ajouter</a>
-                    </li>
-                </ul>
-            </li>
-
-            <li class="nav-parent"><a href=""><i class="fa fa-users"></i> <span>Personnels</span></a>
+            <li class="nav-parent"><a href=""><i class="fa fa-location-arrow"></i> <span>Vol</span></a>
                 <ul class="children">
                     <li><a href="#"><i class="fa fa-list"></i> Lister</a>
                     </li>
                     <li><a href="#"><i class="fa fa-plus"></i> Ajouter</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="active nav-parent"><a href=""><i class="fa fa-users"></i> <span>Personnels</span></a>
+                <ul class="children">
+                    <li><a href="#"><i class="fa fa-list"></i> Lister</a>
+                    </li>
+                    <li class="active"><a href="#"><i class="fa fa-plus"></i> Ajouter</a>
                     </li>
                 </ul>
             </li>
@@ -232,8 +242,8 @@
 
 
     <div class="pageheader">
-        <h2><i class="fa fa fa-location-arrow""></i> Vols
-            <span>Lister</span>
+        <h2><i class="fa fa fa-users"></i> Personnel
+            <span>Ajouter</span>
         </h2>
     </div>
 
@@ -242,61 +252,94 @@
 
 
 
-        <div class="row">
-            <div class="panel panel-default">
 
-                <div class="panel-body">
-                    <h5 class="subtitle mb5">Liste de vols</h5>
+        <div class="panel panel-default">
 
-                {{ msg }}
-                    <div class="table-responsive">
-                        <table class="table" id="table1">
-                           <thead>
-                            <tr>
-                                <th>Id</th>
-                                <th>Date</th>
-                                <th>heure</th>
-                                <th>Durée</th>
-                                <th>Destination</th>
-                                <th>Avion id</th>
-                                <th></th>
-                                <th></th>
-                            </tr>
-                            </thead>
-                            <tbody>
-
-                            {% for a in vols %}
-                                <tr>
-                                <td>{{ a.id }}</td>
-                                <td>{{ a.date|date('Y-m-d') }}</td>
-                                <td>{{ a.heure|date('H:i') }}</td>
-                                <td>{{ a.duree }}</td>
-                                <td>{{ a.destination }}</td>
-                                <td>{{ a.avion.id }}</td>
-                                    <td class="center"><a href="{{ path('siteadmin_vol_supprimer',{'id':a.id}) }}"><span class="fa fa-times"></span>Suppurimer</a></td>
-                                    <td class="center"><a href="{{ path('siteadmin_vol_modifier',{'id':a.id}) }}"><span class="fa fa-edit"></span> Modifier</a></td>
-                                </tr>
-
-                            {% endfor %}
-
-
-
-
-                            </tbody>
-                        </table>
-                    </div><!-- table-responsive -->
-
-
-                </div><!-- panel-body -->
+            <div class="panel-body ">
+                <h5 class="subtitle mb5">Ajouter personnel</h5>
 
 
 
 
 
-            </div>
+
+
+                <form class="form-horizontal form-bordered" action="" method="post" {{ form_enctype(form) }}>
+
+
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">Nom :</label>
+                        <div class="col-sm-6">
+                            {{ form_widget(form.nom) }}
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">Prenom :</label>
+                        <div class="col-sm-6">
+                            {{ form_widget(form.prenom) }}
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">Sexe :</label>
+                        <div class="col-sm-6">
+                            <!-- <input type="text" placeholder="Default Input" class="form-control" /> -->
+                            {{ form_widget(form.sexe) }}
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">Date de Naissance :</label>
+                        <div class="col-sm-6">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+
+                                {{ form_widget(form.dateNaissance) }}
+
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">Poste :</label>
+                        <div class="col-sm-6">
+                            <!-- <input type="text" placeholder="Default Input" class="form-control" /> -->
+                            {{ form_widget(form.poste) }}
+                        </div>
+                    </div>
+
+
+                    {{ form_widget(form._token) }}
+                    <div class="row">
+                        <div class="col-sm-6 col-sm-offset-3">
+                            <input type="submit" value="Ajouter" class="btn btn-primary">&nbsp;
+                            <button class="btn btn-default">Annuler</button>
+                        </div>
+                    </div>
+
+                </form>
+                <p><a href="{{ path('siteadmin_personnel_lister') }}">Retour à la liste des personnels</a></p>
+
+
+            </div><!-- panel-body -->
+
+
+
+
+
+
+
 
 
         </div>
+
+
+
 
 
 
@@ -337,52 +380,20 @@
 
 
 <script>
-    jQuery(document).ready(function() {
-
-        jQuery('#table1').dataTable({
-            "aoColumnDefs": [
-                { "bSortable": false, "aTargets": [ 6,7 ] }
-            ],
-
-            "oLanguage": {
-                "oPaginate": {
-                    "sNext": "Suivant",
-                    "sPrevious":"Précédent",
-                    "sSearch": "Chercher:",
-                    "sLengthMenu": "Afficher _MENU_",
-                    "sInfo": "De _START_ to _END_ à _TOTAL_ records",
-                }
-            }
-        });
 
 
-        // Chosen Select
-        jQuery("select").chosen({
-            'min-width': '100px',
-            'white-space': 'nowrap',
-            disable_search_threshold: 10
-        });
+    jQuery(document).ready(function(){
 
-        // Delete row in a table
-        jQuery('.delete-row').click(function(){
-            var c = confirm("Continue delete?");
-            if(c)
-                jQuery(this).closest('tr').fadeOut(function(){
-                    jQuery(this).remove();
-                });
 
-            return false;
-        });
+        jQuery('#action_dateNaissance').datepicker();
 
-        // Show aciton upon row hover
-        jQuery('.table-hidaction tbody tr').hover(function(){
-            jQuery(this).find('.table-action-hide a').animate({opacity: 1});
-        },function(){
-            jQuery(this).find('.table-action-hide a').animate({opacity: 0});
-        });
+
+
 
 
     });
+
+
 </script>
 
 
