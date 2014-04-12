@@ -71,4 +71,17 @@ swiftmailer:
 fos_user:
     db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
     firewall_name: main
-    user_class: site\adminBundle\Entity\Admin
+    user_class: site\adminBundle\Entity\User
+    service:
+        user_manager: pugx_user_manager
+
+
+
+pugx_multi_user:
+  users:
+    admin:
+        entity:
+          class: site\adminBundle\Entity\Admin
+    passager:
+            entity:
+              class: site\adminBundle\Entity\Passager

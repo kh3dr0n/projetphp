@@ -2,22 +2,24 @@
 /**
  * Created by PhpStorm.
  * User: kh3dr0n
- * Date: 05/04/2014
- * Time: 19:07
+ * Date: 12/04/2014
+ * Time: 17:00
  */
 
 namespace site\adminBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use PUGX\MultiUserBundle\Validator\Constraints\UniqueEntity;
+use FOS\UserBundle\Model\User as BaseUser;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="admin")
- * @UniqueEntity(fields = "username", targetClass = "Acme\UserBundle\Entity\User", message="fos_user.username.already_used")
- * @UniqueEntity(fields = "email", targetClass = "Acme\UserBundle\Entity\User", message="fos_user.email.already_used")
+ * @ORM\Table(name="user")
+ * @ORM\InheritanceType("JOINED")
+ * @ORM\DiscriminatorColumn(name="type", type="string")
+ * @ORM\DiscriminatorMap({"admin" = "Admin", "passager" = "Passager"})
+ *
  */
-class Admin extends User
+abstract class User extends BaseUser
 {
     /**
      * @ORM\Id

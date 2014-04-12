@@ -2,22 +2,23 @@
 /**
  * Created by PhpStorm.
  * User: kh3dr0n
- * Date: 05/04/2014
- * Time: 19:07
+ * Date: 12/04/2014
+ * Time: 17:03
  */
 
 namespace site\adminBundle\Entity;
+
 
 use Doctrine\ORM\Mapping as ORM;
 use PUGX\MultiUserBundle\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="admin")
+ * @ORM\Table(name="passager")
  * @UniqueEntity(fields = "username", targetClass = "Acme\UserBundle\Entity\User", message="fos_user.username.already_used")
  * @UniqueEntity(fields = "email", targetClass = "Acme\UserBundle\Entity\User", message="fos_user.email.already_used")
  */
-class Admin extends User
+class Passager extends User
 {
     /**
      * @ORM\Id
