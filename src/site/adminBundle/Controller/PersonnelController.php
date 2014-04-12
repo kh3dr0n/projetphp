@@ -37,7 +37,7 @@ class PersonnelController extends Controller{
                 $em->persist($personnel);
                 $em->flush();
 
-                return $this->redirect($this->generateUrl('siteadmin_avion_lister'));
+                return $this->redirect($this->generateUrl('siteadmin_personnel_lister'));
 
             }
         }

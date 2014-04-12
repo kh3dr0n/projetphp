@@ -18,7 +18,7 @@ class VolForm extends AbstractType{
         $builder
             ->add('avion', 'entity', array(
                 'class' => 'siteadminBundle:Avion',
-                'property' => 'id',
+                //'property' => 'id',
                 'attr' => array(
                     'class'=>'form-control input-sm mb15'
 
@@ -51,7 +51,8 @@ class VolForm extends AbstractType{
                 'multiple' => true ,
                 'group_by' => 'poste',
                 'attr'=>array(
-                    'class'=>'form-control chosen-select'
+                    'class'=>'form-control chosen-select',
+                    'data-placeholder'=>'Selectionner Personnels'
                 )
             ))
         ;

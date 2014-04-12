@@ -88,4 +88,7 @@ class Avion {
     {
         return $this->model;
     }
+    public function __toString(){
+        return $this->id.':  '.$this->model;
+    }
 }
