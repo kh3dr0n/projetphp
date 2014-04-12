@@ -47,6 +47,10 @@ class Vol {
      * @Assert\Length(min="3")
      */
     private $destination;
+    /**
+     * @ORM\ManyToMany(targetEntity="Personnel")
+     */
+    private $personnel;
 
 
 
@@ -175,5 +179,45 @@ class Vol {
     public function getHeure()
     {
         return $this->heure;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->personnel = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add personnel
+     *
+     * @param \site\adminBundle\Entity\Personnel $personnel
+     * @return Vol
+     */
+    public function addPersonnel(\site\adminBundle\Entity\Personnel $personnel)
+    {
+        $this->personnel[] = $personnel;
+
+        return $this;
+    }
+
+    /**
+     * Remove personnel
+     *
+     * @param \site\adminBundle\Entity\Personnel $personnel
+     */
+    public function removePersonnel(\site\adminBundle\Entity\Personnel $personnel)
+    {
+        $this->personnel->removeElement($personnel);
+    }
+
+    /**
+     * Get personnel
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getPersonnel()
+    {
+        return $this->personnel;
     }
 }

@@ -26,11 +26,17 @@ siteadmin_vol_supprimer:
     pattern: /vol/supprimer/{id}
     defaults: { _controller: siteadminBundle:Vol:supprimer }
 siteadmin_personnel_lister:
-    pattern: /personnel/lister
+    pattern: /personnel/
     defaults: { _controller: siteadminBundle:personnel:lister }
 siteadmin_personnel_ajouter:
     pattern: /personnel/ajouter
     defaults: { _controller: siteadminBundle:personnel:ajouter }
+siteadmin_personnel_modifier:
+    pattern: /personnel/modifier/{id}
+    defaults: { _controller: siteadminBundle:personnel:modifier }
+siteadmin_personnel_supprimer:
+    pattern: /personnel/supprimer/{id}
+    defaults: { _controller: siteadminBundle:personnel:supprimer }
 
 #FOS
 fos_user_security:

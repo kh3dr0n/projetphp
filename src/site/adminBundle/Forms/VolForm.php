@@ -45,6 +45,15 @@ class VolForm extends AbstractType{
                 )
             ))
             ->add('destination')
+            ->add('personnel','entity',array(
+                'class'    => 'siteadminBundle:Personnel',
+                'expanded' => false ,
+                'multiple' => true ,
+                'group_by' => 'poste',
+                'attr'=>array(
+                    'class'=>'form-control chosen-select'
+                )
+            ))
         ;
     }
 

@@ -54,11 +54,6 @@ class Personnel {
      * @Assert\Choice(choices = {"Commandant du bord", "Copilote", "Stewart", "Hôtesse"})
      */
     private $poste;
-
-    /**
-     * @ORM\ManyToMany(targetEntity="Vol")
-     */
-    private $vol;
     /**
      * Constructor
      */
@@ -223,5 +218,8 @@ class Personnel {
     public function getVol()
     {
         return $this->vol;
+    }
+    public function __toString(){
+        return $this->nom.' '.$this->prenom;
     }
 }
