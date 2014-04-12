@@ -1,1 +1,12 @@
-Hello {{ name }}!
+<table>
+{% for a in vols %}
+<tr>
+    <td>{{ a.id }}</td>
+    <td>{{ a.date|date('Y-m-d') }}</td>
+    <td>{{ a.heure|date('H:i') }}</td>
+    <td>{{ a.duree }}</td>
+    <td>{{ a.destination }}</td>
+    <td>{{ a.avion.id }}</td>
+    </tr>
+{% endfor %}
+</table>
