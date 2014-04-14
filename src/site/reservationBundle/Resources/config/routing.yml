@@ -1,3 +1,13 @@
 sitereservation_homepage:
     pattern:  /
     defaults: { _controller: sitereservationBundle:Default:index }
+sitereservation_reserver:
+    pattern:  /reserver
+    defaults: { _controller: sitereservationBundle:Default:reserver }
+
+logincheck:
+    pattern: /login-check
+    defaults: { _controller: sitereservationBundle:Login:checklogin}
+loginredirect:
+    pattern: /login-redirect
+    defaults: { _controller: sitereservationBundle:Login:loginRediraction}

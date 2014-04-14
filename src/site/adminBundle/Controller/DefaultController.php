@@ -17,11 +17,11 @@ class DefaultController extends Controller
 //
 //        $userOne = $userManager->createUser();
 //
-//        $userOne->setUsername('admin');
-//        $userOne->setEmail('admin@mail.com');
-//        $userOne->setPlainPassword('admin');
+//        $userOne->setUsername('user');
+//        $userOne->setEmail('user@mail.com');
+//        $userOne->setPlainPassword('user');
 //        $userOne->setEnabled(true);
-//        $userOne->addRole('ROLE_ADMIN');
+//        $userOne->addRole('ROLE_Passager');
 //
 //        $userManager->updateUser($userOne, true);
 //

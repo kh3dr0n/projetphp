@@ -18,4 +18,7 @@ class DefaultController extends Controller
             'vols'=>$vols
         ));
     }
+    public function reserverAction(){
+    return $this->render('sitereservationBundle:Default:reserver.html.twig');
+    }
 }
