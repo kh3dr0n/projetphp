@@ -254,27 +254,26 @@
                             <thead>
                             <tr>
                                 <th>Id</th>
-                                <th>Nom</th>
-                                <th>Prénom</th>
-                                <th>Sexe</th>
-                                <th>Date de Naissance</th>
-                                <th>Poste</th>
-                                <th></th>
+                                <th>Vol</th>
+                                <th>Passager</th>
+                                <th>etat</th>
                                 <th></th>
                             </tr>
                             </thead>
                             <tbody>
 
-                            {% for a in personnels %}
+                            {% for a in reservations %}
                                 <tr>
                                     <td>{{ a.id }}</td>
-                                    <td>{{ a.nom }}</td>
-                                    <td>{{ a.prenom }}</td>
-                                    <td>{{ a.sexe }}</td>
-                                    <td>{{ a.dateNaissance|date('Y-m-d') }}</td>
-                                    <td>{{ a.poste }}</td>
-                                    <td class="center"><a class="confirmer" href="{{ path('siteadmin_personnel_supprimer',{'id':a.id}) }}"><span class="fa fa-times"></span>Suppurimer</a></td>
-                                    <td class="center"><a href="{{ path('siteadmin_personnel_modifier',{'id':a.id}) }}"><span class="fa fa-edit"></span> Modifier</a></td>
+                                    <td>{{ a.vol.id }}</td>
+                                    <td>{{ a.passager }}</td>
+                                    <td>{{ a.getEtatstring() }}</td>
+
+                                    <td class="center"><div class="btn-group">
+                                            <a class="btn btn-success" href="#"><span class="fa fa-thumbs-up"></span>Valider</a>
+                                            <a class="btn btn-warning" href="#"><span class="fa fa-thumbs-down"></span>Refuser</a>
+                                    </div></td>
+                                    
                                 </tr>
 
                             {% endfor %}
@@ -341,7 +340,7 @@
 
         jQuery('#table1').dataTable({
             "aoColumnDefs": [
-                { "bSortable": false, "aTargets": [ 6,7 ] }
+                { "bSortable": false, "aTargets": [ 4 ] }
             ],
 
             "oLanguage": {

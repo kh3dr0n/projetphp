@@ -17,8 +17,10 @@ class VolController extends Controller{
     function listerAction(){
         $em = $this->container->get('doctrine')->getEntityManager();
         $vols = $em->getRepository('siteadminBundle:vol')->FindAll();
-
-
+        $r = $this->getDoctrine()->getRepository('siteadminBundle:reservation');
+        foreach($vols as $a){
+            $a->reservation = (string)count($r->findByVol($a)).'/'.(string)$a->getAvion()->getCapacite();
+        }
 
         return $this->render('siteadminBundle:vol:lister.html.twig',array(
             'vols'=>$vols,

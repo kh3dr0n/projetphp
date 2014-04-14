@@ -11,17 +11,23 @@ class DefaultController extends Controller
 
 //
 //        $discriminator = $this->container->get('pugx_user.manager.user_discriminator');
-//        $discriminator->setClass('site\adminBundle\Entity\Admin');
+//        $discriminator->setClass('site\adminBundle\Entity\Passager');
 //
 //        $userManager = $this->container->get('pugx_user_manager');
 //
 //        $userOne = $userManager->createUser();
 //
-//        $userOne->setUsername('user');
-//        $userOne->setEmail('user@mail.com');
-//        $userOne->setPlainPassword('user');
+//        $userOne->setUsername('test');
+//        $userOne->setEmail('testr@mail.com');
+//
+//        $userOne->setNom('Nom');
+//        $userOne->setPrenom('Prenom');
+//        $userOne->setSexe('M');
+//        $userOne->setDateNaissance(new \DateTime('01-01-1990'));
+//
+//        $userOne->setPlainPassword('test');
 //        $userOne->setEnabled(true);
-//        $userOne->addRole('ROLE_Passager');
+//        $userOne->addRole('ROLE_PASSAGER');
 //
 //        $userManager->updateUser($userOne, true);
 //

@@ -1,6 +1,14 @@
 
 jQuery(window).load(function() {
-   
+
+    jQuery('.confirmer').click(function(event){
+        var c = confirm("Confirmer votre action ?");
+        if(!c)
+            event.preventDefault();
+
+    });
+
+
    // Page Preloader
    jQuery('#status').fadeOut();
    jQuery('#preloader').delay(350).fadeOut(function(){

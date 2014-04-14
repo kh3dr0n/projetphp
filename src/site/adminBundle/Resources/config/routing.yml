@@ -37,6 +37,9 @@ siteadmin_personnel_modifier:
 siteadmin_personnel_supprimer:
     pattern: /personnel/supprimer/{id}
     defaults: { _controller: siteadminBundle:personnel:supprimer }
+siteadmin_reservation_lister:
+    pattern: /reservation/
+    defaults: { _controller: siteadminBundle:reservation:lister }
 
 #FOS
 fos_user_security:

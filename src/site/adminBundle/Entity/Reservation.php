@@ -22,7 +22,7 @@ class Reservation {
      */
     private $id;
     /**
-     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\ManyToOne(targetEntity="Passager")
      * @Assert\NotBlank()
      */
     private $passager;
@@ -115,5 +115,16 @@ class Reservation {
     public function getVol()
     {
         return $this->vol;
+    }
+    public function getEtatstring(){
+        switch($this->etat){
+            case 'A':
+                return 'Attente';
+                break;
+            case 'V':
+                return 'Validée';
+            case 'R':
+                return 'Refuséé';
+        }
     }
 }
