@@ -4,6 +4,7 @@ namespace site\reservationBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use site\adminBundle\Entity\Vol;
+use site\adminBundle\Entity\Reservation;
 
 class DefaultController extends Controller
 {
@@ -23,8 +24,22 @@ class DefaultController extends Controller
     }
     public function reserverAction($id = null){
 
+        $em = $this->container->get('doctrine')->getEntityManager();
+        $vol = $em->find('siteadminBundle:Vol', $id);
+        $userid = $this->get('security.context')->getToken()->getUser()->getId();
+        $user = $em->find('siteadminBundle:User', $userid);
+
+        $r = new Reservation();
+        $r->setEtat('A');
+        $r->setVol($vol);
+        $r->setPassager($user);
+
+        $em->persist($r);
+        $em->flush();
 
 
-    return $this->render('sitereservationBundle:Default:reserver.html.twig');
+        return $this->redirect($this->generateUrl('sitereservation_homepage'));
+
+    //return $this->render('sitereservationBundle:Default:reserver.html.twig');
     }
 }

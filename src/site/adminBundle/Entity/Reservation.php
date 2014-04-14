@@ -12,7 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * ORM\Entity
+ * @ORM\Entity
  */
 class Reservation {
     /**
@@ -22,7 +22,7 @@ class Reservation {
      */
     private $id;
     /**
-     * @ORM\ManyToOne(targetEntity="Passager")
+     * @ORM\ManyToOne(targetEntity="User")
      * @Assert\NotBlank()
      */
     private $passager;
@@ -37,4 +37,83 @@ class Reservation {
      * @Assert\Choice(choices = {"A", "V","R"})
      */
     private $etat;
-} 
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set etat
+     *
+     * @param string $etat
+     * @return Reservation
+     */
+    public function setEtat($etat)
+    {
+        $this->etat = $etat;
+
+        return $this;
+    }
+
+    /**
+     * Get etat
+     *
+     * @return string 
+     */
+    public function getEtat()
+    {
+        return $this->etat;
+    }
+
+    /**
+     * Set passager
+     *
+     * @param \site\adminBundle\Entity\User $passager
+     * @return Reservation
+     */
+    public function setPassager(\site\adminBundle\Entity\User $passager = null)
+    {
+        $this->passager = $passager;
+
+        return $this;
+    }
+
+    /**
+     * Get passager
+     *
+     * @return \site\adminBundle\Entity\User 
+     */
+    public function getPassager()
+    {
+        return $this->passager;
+    }
+
+    /**
+     * Set vol
+     *
+     * @param \site\adminBundle\Entity\Vol $vol
+     * @return Reservation
+     */
+    public function setVol(\site\adminBundle\Entity\Vol $vol = null)
+    {
+        $this->vol = $vol;
+
+        return $this;
+    }
+
+    /**
+     * Get vol
+     *
+     * @return \site\adminBundle\Entity\Vol 
+     */
+    public function getVol()
+    {
+        return $this->vol;
+    }
+}
