@@ -2,8 +2,11 @@ sitereservation_homepage:
     pattern:  /
     defaults: { _controller: sitereservationBundle:Default:index }
 sitereservation_reserver:
-    pattern:  /reserver
+    pattern:  /reserver/{id}
     defaults: { _controller: sitereservationBundle:Default:reserver }
+sitereservation_logout:
+    pattern: /logout
+    defaults : { _controller:  sitereservationBundle:Login:logout}
 
 logincheck:
     pattern: /login-check

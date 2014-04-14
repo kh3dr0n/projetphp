@@ -29,4 +29,7 @@ class LoginController extends Controller{
             return $this->redirect($this->generateUrl('sitereservation_homepage'));
         }
     }
+    function logoutAction(){
+        return $this->redirect($this->generateUrl('fos_user_security_logout'));
+    }
 }

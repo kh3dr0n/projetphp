@@ -11,14 +11,20 @@ class DefaultController extends Controller
     {
         $em = $this->container->get('doctrine')->getEntityManager();
         $vols = $em->getRepository('siteadminBundle:vol')->FindAll();
-
+        $csrfToken = $this->container->has('form.csrf_provider')
+            ? $this->container->get('form.csrf_provider')->generateCsrfToken('authenticate')
+            : null;
 
         return $this->render('sitereservationBundle:Default:index.html.twig',
         array(
-            'vols'=>$vols
+            'vols'=>$vols,
+            'csrf_token'=>$csrfToken
         ));
     }
-    public function reserverAction(){
+    public function reserverAction($id = null){
+
+
+
     return $this->render('sitereservationBundle:Default:reserver.html.twig');
     }
 }
