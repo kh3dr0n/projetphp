@@ -22,4 +22,36 @@ class ReservationController extends Controller{
         ));
     }
 
+
+    function accepterAction($id = null){
+
+        $em = $this->container->get('doctrine')->getEntityManager();
+        $r = $em->find('siteadminBundle:Reservation', $id);
+        $r->setEtat('V');
+        $em->persist($r);
+        $em->flush();
+        return $this->redirect($this->generateUrl('siteadmin_reservation_lister'));
+    }
+
+    function refuserAction($id = null){
+
+        $em = $this->container->get('doctrine')->getEntityManager();
+        $r = $em->find('siteadminBundle:Reservation', $id);
+        $r->setEtat('R');
+        $em->persist($r);
+        $em->flush();
+        return $this->redirect($this->generateUrl('siteadmin_reservation_lister'));
+
+    }
+    public function supprimerAction($id = null){
+        $em = $this->container->get('doctrine')->getEntityManager();
+        $r= $em->find('siteadminBundle:Reservation',$id);
+        if(!$r){
+            throw new NotFoundHttpException("Reservation non trouvé");
+        }
+        $em->remove($r);
+        $em->flush();
+        return $this->redirect($this->generateUrl('siteadmin_reservation_lister'));
+
+    }
 } 

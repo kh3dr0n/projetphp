@@ -258,6 +258,7 @@
                                 <th>Passager</th>
                                 <th>etat</th>
                                 <th></th>
+                                <th></th>
                             </tr>
                             </thead>
                             <tbody>
@@ -268,11 +269,16 @@
                                     <td>{{ a.vol.id }}</td>
                                     <td>{{ a.passager }}</td>
                                     <td>{{ a.getEtatstring() }}</td>
-
+                                    {% if a.etat == 'A' %}
                                     <td class="center"><div class="btn-group">
-                                            <a class="btn btn-success" href="#"><span class="fa fa-thumbs-up"></span>Valider</a>
-                                            <a class="btn btn-warning" href="#"><span class="fa fa-thumbs-down"></span>Refuser</a>
+                                            <a class="btn btn-success" href="{{ path('siteadmin_reservation_accepter',{'id':a.id}) }}"><span class="fa fa-thumbs-up"></span>Valider</a>
+                                            <a class="btn btn-warning" href="{{ path('siteadmin_reservation_refuser',{'id':a.id}) }}"><span class="fa fa-thumbs-down"></span>Refuser</a>
                                     </div></td>
+                                    {% else %}
+                                    <td>-</td>
+                                    {% endif %}
+
+                                    <td class="center"><a class="confirmer" href="{{ path('siteadmin_reservation_supprimer',{'id':a.id}) }}"><span class="fa fa-times"></span>Suppurimer</a></td>
                                     
                                 </tr>
 

@@ -27,7 +27,8 @@ class DefaultController extends Controller
         $em = $this->container->get('doctrine')->getEntityManager();
         $vol = $em->find('siteadminBundle:Vol', $id);
         $userid = $this->get('security.context')->getToken()->getUser()->getId();
-        $user = $em->find('siteadminBundle:User', $userid);
+
+        $user = $em->find('siteadminBundle:Passager', $userid);
 
         $r = new Reservation();
         $r->setEtat('A');
@@ -38,8 +39,8 @@ class DefaultController extends Controller
         $em->flush();
 
 
-        return $this->redirect($this->generateUrl('sitereservation_homepage'));
+       return $this->redirect($this->generateUrl('sitereservation_homepage'));
 
-    //return $this->render('sitereservationBundle:Default:reserver.html.twig');
     }
+
 }

@@ -40,6 +40,16 @@ siteadmin_personnel_supprimer:
 siteadmin_reservation_lister:
     pattern: /reservation/
     defaults: { _controller: siteadminBundle:reservation:lister }
+siteadmin_reservation_accepter:
+    pattern: /reservation/accepter/{id}
+    defaults: { _controller: siteadminBundle:reservation:accepter}
+siteadmin_reservation_refuser:
+    pattern: /reservation/refuser/{id}
+    defaults: { _controller: siteadminBundle:reservation:refuser}
+siteadmin_reservation_supprimer:
+    pattern: /reservation/supprimer/{id}
+    defaults: { _controller: siteadminBundle:reservation:supprimer}
+
 
 #FOS
 fos_user_security:
