@@ -4,6 +4,15 @@ sitereservation_homepage:
 sitereservation_reserver:
     pattern:  /reserver/{id}
     defaults: { _controller: sitereservationBundle:Default:reserver }
+sitereservation_mesreservation:
+    pattern:  /mesreservations/
+    defaults: { _controller: sitereservationBundle:Default:mesreservation }
+
+
+
+
+
+
 sitereservation_logout:
     pattern: /logout
     defaults : { _controller:  sitereservationBundle:Login:logout}

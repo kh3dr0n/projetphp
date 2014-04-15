@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="images/favicon.png" type="image/png">
+
+    <title>Bracket Responsive Bootstrap3 Admin</title>
+
+    <link href="{{ asset('css/style.default.css')}}" rel="stylesheet">
+    <link href="{{ asset('/css/jquery.datatables.css')}}" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body class="horizontal-menu">
+
+<!-- Preloader -->
+<div id="preloader">
+    <div id="status"><i class="fa fa-spinner fa-spin"></i></div>
+</div>
+
+<section>
+
+
+
+    <div class="mainpanel">
+
+        <div class="headerbar">
+
+            <div class="header-left">
+
+                <div class="logopanel">
+                    <h1>Airena</h1>
+                </div><!-- logopanel -->
+
+                <div class="topnav">
+                    <a class="menutoggle"><i class="fa fa-bars"></i></a>
+
+                    <ul class="nav nav-horizontal">
+                        <li><a href="index.html"><i class="glyphicon glyphicon-plane"></i> <span>Vols</span></a></li>
+                        {% if is_granted("ROLE_PASSAGER") %}
+                            <li class="active"><a href="email.html"><span class="pull-right badge badge-success">{{ nbvalide }}</span><i class="fa fa-plane"></i> <span>Mes Vols</span></a></li>
+                            <li><a href="#"><i class="glyphicon glyphicon-user"></i> <span>Mon Profile</span></a></li>
+                            <li><a href="{{ path('sitereservation_logout') }}"><i class="glyphicon glyphicon-share-alt"></i> <span>Déconnection</span></a></li>
+                        {% endif %}
+                    </ul>
+                </div><!-- topnav -->
+
+            </div><!-- header-left -->
+
+
+
+        </div><!-- headerbar -->
+
+
+
+        <div class="contentpanel">
+            <!-- content goes here... -->
+
+            <div class="row">
+
+               
+                <div class="col-sm-12 col-md-12">
+                    
+
+
+
+
+
+
+                        <div class="table-responsive dashboard-datatable"">
+                        <table class="table" id="table1">
+                            <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Heure</th>
+                                <th>Durees</th>
+                                <th>destination</th>
+                                <th>Etat</th>
+                                <th>Ticket</th>
+
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            {% for a in vols %}
+                                <tr class="odd ">
+                                    <td>{{ a.vol.date|date('Y-m-d') }}</td>
+                                    <td>{{ a.vol.heure|date('H:i') }}</td>
+                                    <td>{{ a.vol.duree }}</td>
+                                    <td>{{ a.vol.destination }}</td>
+                                    <td>{{ a.getEtatString() }}</td>
+                                    <td>-</td>
+
+
+                                </tr>
+
+                            {% endfor %}
+
+
+
+
+                            </tbody>
+                        </table>
+                    </div><!-- table-responsive -->
+
+
+
+
+
+                    {#</div>#}
+
+
+
+        </div>
+
+    </div><!-- mainpanel -->
+
+
+
+
+</section>
+
+
+
+<script src="{{ asset('js/jquery-1.10.2.min.js')}}"></script>
+<script src="{{ asset('js/jquery-migrate-1.2.1.min.js')}}"></script>
+<script src="{{ asset('js/bootstrap.min.js')}}"></script>
+<script src="{{ asset('js/modernizr.min.js')}}"></script>
+<script src="{{ asset('js/jquery.sparkline.min.js')}}"></script>
+<script src="{{ asset('js/toggles.min.js')}}"></script>
+<script src="{{ asset('js/retina.min.js')}}"></script>
+<script src="{{ asset('js/jquery.cookies.js')}}"></script>
+
+<script src="{{ asset('/js/jquery.datatables.min.js')}}"></script>
+
+<script src="{{ asset('js/custom.js')}}"></script>
+
+
+<script>
+
+    jQuery(document).ready(function() {
+
+        jQuery('#table1').dataTable({
+            "aoColumnDefs": [
+                { "bSortable": false, "aTargets": [ 4 ] }
+            ],
+            "bLengthChange": false,
+            "oLanguage": {
+                "oPaginate": {
+                    "sNext": "Suivant",
+                    "sPrevious":"Précédent",
+                    "sSearch": "Chercher:",
+                    "sLengthMenu": "Afficher _MENU_",
+                    "sInfo": "De _START_ to _END_ à _TOTAL_ records",
+                }
+            }
+        });
+
+
+    });
+</script>
+
+</body>
+</html>
