@@ -80,34 +80,34 @@
             </li>
             <li class="nav-parent"><a href="{{ path('siteadmin_avion_lister') }}"><i class="fa fa-plane"></i> <span>Avion</span></a>
                 <ul class="children">
-                    <li><a href="#"><i class="fa fa-list"></i> Lister</a>
+                    <li><a href="{{ path('siteadmin_avion_lister') }}"><i class="fa fa-list"></i> Lister</a>
                     </li>
-                    <li><a href="#"><i class="fa fa-plus"></i> Ajouter</a>
+                    <li><a href="{{ path('siteadmin_avion_ajouter') }}"><i class="fa fa-plus"></i> Ajouter</a>
                     </li>
                 </ul>
             </li>
 
             <li class="nav-parent"><a href=""><i class="fa fa-location-arrow"></i> <span>Vol</span></a>
                 <ul class="children">
-                    <li><a href="#"><i class="fa fa-list"></i> Lister</a>
+                    <li><a href="{{ path('siteadmin_vol_lister') }}"><i class="fa fa-list"></i> Lister</a>
                     </li>
-                    <li><a href="#"><i class="fa fa-plus"></i> Ajouter</a>
+                    <li><a href="{{ path('siteadmin_vol_ajouter') }}"><i class="fa fa-plus"></i> Ajouter</a>
                     </li>
                 </ul>
             </li>
 
             <li class="active nav-parent"><a href=""><i class="fa fa-users"></i> <span>Personnels</span></a>
                 <ul class="children">
-                    <li><a href="#"><i class="fa fa-list"></i> Lister</a>
+                    <li><a href="{{ path('siteadmin_personnel_lister') }}"><i class="fa fa-list"></i> Lister</a>
                     </li>
-                    <li class="active"><a href="#"><i class="fa fa-plus"></i> Ajouter</a>
+                    <li class="{{ path('siteadmin_personnel_ajouter') }}"><a href="#"><i class="fa fa-plus"></i> Ajouter</a>
                     </li>
                 </ul>
             </li>
 
             <li class="nav-parent"><a href=""><i class="fa  fa-tags"></i> <span>Reservation</span></a>
                 <ul class="children">
-                    <li><a href="#"><i class="fa fa-list"></i> Lister</a>
+                    <li><a href="{{ path('siteadmin_reservation_lister') }}"><i class="fa fa-list"></i> Lister</a>
                     </li>
                     <li><a href="#"><i class="fa fa-users"></i> Passagers</a>
                     </li>
@@ -227,7 +227,7 @@
                         </li>
                         <li><a href="#"><i class="glyphicon glyphicon-question-sign"></i> Help</a>
                         </li> -->
-                        <li><a href="signin.html"><i class="glyphicon glyphicon-log-out"></i> Déconnection</a>
+                        <li><a href="{{ path('fos_user_security_logout') }}"><i class="glyphicon glyphicon-log-out"></i> Déconnection</a>
                         </li>
                     </ul>
                 </div>

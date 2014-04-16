@@ -7,7 +7,12 @@ sitereservation_reserver:
 sitereservation_mesreservation:
     pattern:  /mesreservations/
     defaults: { _controller: sitereservationBundle:Default:mesreservation }
-
+sitereservation_profile:
+    pattern:  /profile/
+    defaults: { _controller: sitereservationBundle:Profile:profile }
+sitereservation_profile_pass:
+    pattern: /profile/motdepasse
+    defaults: { _controller: FOSUserBundle:ChangePassword:changePassword }
 
 
 

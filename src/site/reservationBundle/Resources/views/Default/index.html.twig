@@ -7,7 +7,7 @@
     <meta name="author" content="">
     <link rel="shortcut icon" href="images/favicon.png" type="image/png">
 
-    <title>Bracket Responsive Bootstrap3 Admin</title>
+    <title>Airena</title>
 
     <link href="css/style.default.css" rel="stylesheet">
     <link href="{{ asset('/css/jquery.datatables.css')}}" rel="stylesheet">
@@ -44,10 +44,10 @@
         <a class="menutoggle"><i class="fa fa-bars"></i></a>
 
         <ul class="nav nav-horizontal">
-            <li class="active"><a href="index.html"><i class="glyphicon glyphicon-plane"></i> <span>Vols</span></a></li>
+            <li class="active"><a href="{{ path('sitereservation_homepage') }}"><i class="glyphicon glyphicon-plane"></i> <span>Vols</span></a></li>
             {% if is_granted("ROLE_PASSAGER") %}
-            <li><a href="email.html"><span class="pull-right badge badge-success">{{ nbvalide }}</span><i class="fa fa-plane"></i> <span>Mes Vols</span></a></li>
-            <li><a href="#"><i class="glyphicon glyphicon-user"></i> <span>Mon Profile</span></a></li>
+            <li><a href="{{ path('sitereservation_mesreservation') }}"><span class="pull-right badge badge-success">{{ nbvalide }}</span><i class="fa fa-plane"></i> <span>Mes Vols</span></a></li>
+            <li><a href="{{ path('sitereservation_profile') }}"><i class="glyphicon glyphicon-user"></i> <span>Mon Profile</span></a></li>
             <li><a href="{{ path('sitereservation_logout') }}"><i class="glyphicon glyphicon-share-alt"></i> <span>Déconnection</span></a></li>
             {% endif %}
         </ul>

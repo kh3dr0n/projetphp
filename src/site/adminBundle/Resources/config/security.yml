@@ -22,5 +22,6 @@ security:
         - { path: /admin/login_check, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: /admin/*, role: ROLE_ADMIN }
         - { path: /reserver/*, role: ROLE_PASSAGER }
+        - { path: /admin/profile/change-password, role: ROLE_USER}
 #        - { path: admin/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
 #        - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
