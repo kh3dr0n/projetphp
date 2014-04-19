@@ -1,0 +1,15 @@
+<pdf>
+    <dynamic-page>
+        <h1 text-align="center">Passager</h1>
+        <h2>Nom :</h2>{{ reservation.passager.nom }}
+        <h2>Prenom :</h2>{{ reservation.passager.prenom }}
+        <h1 text-align="center">Vol</h1>
+        <h2>Vol id</h2>{{ reservation.vol.id }}
+
+
+        <h2>Date :</h2>{{ reservation.vol.date|date('Y-m-d') }}
+        <h2>Heure :</h2>{{ reservation.vol.heure|date('H:i') }}
+        <h2>Duree :</h2>{{ reservation.vol.duree }}
+        <h2>Destination :</h2>{{ reservation.vol.destination }}
+    </dynamic-page>
+</pdf>

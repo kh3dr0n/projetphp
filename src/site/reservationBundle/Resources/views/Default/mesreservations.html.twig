@@ -97,8 +97,11 @@
                                     <td>{{ a.vol.duree }}</td>
                                     <td>{{ a.vol.destination }}</td>
                                     <td>{{ a.getEtatString() }}</td>
+                                    {% if a.etat == 'V' %}
+                                    <td class="center"><a  target="_blank" href="{{ path('sitereservation_reservation_pdf',{'id':a.id}) }}"><span class="glyphicon glyphicon-download"></span> Télecharger Ticket</a></td>
+                                    {% else %}
                                     <td>-</td>
-
+                                    {% endif %}
 
                                 </tr>
 

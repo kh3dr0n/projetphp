@@ -13,6 +13,9 @@ sitereservation_profile:
 sitereservation_profile_pass:
     pattern: /profile/motdepasse
     defaults: { _controller: FOSUserBundle:ChangePassword:changePassword }
+sitereservation_reservation_pdf:
+    pattern: /mesreservations/pdf/{id}
+    defaults: { _controller: sitereservationBundle:Default:generatePDF }
 
 
 

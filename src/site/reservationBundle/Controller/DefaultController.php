@@ -5,6 +5,8 @@ namespace site\reservationBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use site\adminBundle\Entity\Vol;
 use site\adminBundle\Entity\Reservation;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class DefaultController extends Controller
 {
@@ -84,6 +86,32 @@ class DefaultController extends Controller
                 'nbvalide'=>$nbvalide
             ));
 
+    }
+    public function generatePDFAction($id = null){
+        $em = $this->container->get('doctrine')->getEntityManager();
+        $reservation = $em->find('siteadminBundle:reservation',$id);
+        $userid = $this->get('security.context')->getToken()->getUser()->getId();
+        if(!$reservation){
+            throw new NotFoundHttpException("Reservation non trouvé");
+        }
+        if($reservation->getetat() != 'V'){
+            throw new NotFoundHttpException("Reservation non trouvé");
+        }
+        $passager = $reservation->getPassager();
+        //if($passager.getId() != $userid){
+          //  throw new NotFoundHttpException("Utilisateur Non autorisé ");
+        //}
+
+        $facade = $this->get('ps_pdf.facade');
+        $response = new Response();
+        $this->render('sitereservationBundle:Default:ticket.pdf.twig',array(
+            'reservation'=>$reservation
+        ),$response);
+        $xml = $response->getContent();
+
+        $content = $facade->render($xml);
+
+        return new Response($content, 200, array('content-type' => 'application/pdf'));
     }
 
 }
