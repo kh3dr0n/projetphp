@@ -77,9 +77,9 @@
                 </ul>
             </li>
 
-            <li class="active nav-parent"><a href=""><i class="fa fa-location-arrow"></i> <span>Vol</span></a>
+            <li class="nav-parent"><a href=""><i class="fa fa-location-arrow"></i> <span>Vol</span></a>
                 <ul class="children">
-                    <li class="active"><a href="{{ path('siteadmin_vol_lister') }}"><i class="fa fa-list"></i> Lister</a>
+                    <li><a href="{{ path('siteadmin_vol_lister') }}"><i class="fa fa-list"></i> Lister</a>
                     </li>
                     <li><a href="{{ path('siteadmin_vol_ajouter') }}"><i class="fa fa-plus"></i> Ajouter</a>
                     </li>
@@ -95,11 +95,11 @@
                 </ul>
             </li>
 
-            <li class="nav-parent"><a href=""><i class="fa  fa-tags"></i> <span>Reservation</span></a>
+            <li class="active nav-parent"><a href=""><i class="fa  fa-tags"></i> <span>Reservation</span></a>
                 <ul class="children">
-                    <li><a href="{{ path('siteadmin_reservation_lister') }}"><i class="fa fa-list"></i> Lister</a>
+                    <li class="active"><a href="{{ path('siteadmin_reservation_lister') }}"><i class="fa fa-list"></i> Lister</a>
                     </li>
-                    <li><a href="#"><i class="fa fa-users"></i> Passagers</a>
+                    <li><a href="#"><i class="fa fa-users"></i> Passagers</a></li><li><a href="{{ path('siteadmin_reservation_exporter') }}"><i class="glyphicon glyphicon-export"></i> Exporter</a>
                     </li>
                 </ul>
             </li>
@@ -232,7 +232,7 @@
 
 
     <div class="pageheader">
-        <h2><i class="fa fa fa-location-arrow""></i> Personnel
+        <h2><i class="fa fa fa-location-arrow""></i> Reservation
             <span>Lister</span>
         </h2>
     </div>
@@ -246,7 +246,7 @@
             <div class="panel panel-default">
 
                 <div class="panel-body">
-                    <h5 class="subtitle mb5">Liste de personnel</h5>
+                    <h5 class="subtitle mb5">Liste de Reservation</h5>
 
                     {{ msg }}
                     <div class="table-responsive">

@@ -20,7 +20,8 @@ class AppKernel extends Kernel
             new site\reservationBundle\sitereservationBundle(),
             new PUGX\MultiUserBundle\PUGXMultiUserBundle(),
             new FOS\UserBundle\FOSUserBundle(),
-            new Ps\PdfBundle\PsPdfBundle()
+            new Ps\PdfBundle\PsPdfBundle(),
+            new Liuggio\ExcelBundle\LiuggioExcelBundle()
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

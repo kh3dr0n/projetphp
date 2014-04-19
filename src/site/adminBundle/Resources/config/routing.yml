@@ -54,7 +54,12 @@ siteadmin_reservation_refuser:
 siteadmin_reservation_supprimer:
     pattern: /reservation/supprimer/{id}
     defaults: { _controller: siteadminBundle:reservation:supprimer}
-
+siteadmin_reservation_exporter:
+    pattern: /reservation/exporter
+    defaults: { _controller: siteadminBundle:reservation:exporter}
+siteadmin_reservation_exporter_excel:
+    pattern: /reservation/exporter/excel
+    defaults: { _controller: siteadminBundle:reservation:exportexcel}
 
 #FOS
 fos_user_security:
