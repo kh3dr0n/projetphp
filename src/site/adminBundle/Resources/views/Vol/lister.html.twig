@@ -262,6 +262,7 @@
                                 <th>Avion id</th>
                                 <th></th>
                                 <th></th>
+                                <th></th>
                             </tr>
                             </thead>
                             <tbody>
@@ -277,6 +278,7 @@
                                 <td>{{ a.avion.id }}</td>
                                     <td class="center"><a class="confirmer" href="{{ path('siteadmin_vol_supprimer',{'id':a.id}) }}"><span class="fa fa-times"></span>Suppurimer</a></td>
                                     <td class="center"><a href="{{ path('siteadmin_vol_modifier',{'id':a.id}) }}"><span class="fa fa-edit"></span> Modifier</a></td>
+                                    <td class="center"><a  target="_blank" href="{{ path('siteadmin_vol_pdf',{'id':a.id}) }}"><span class="glyphicon glyphicon-download"></span> Télecharger PDF</a></td>
                                 </tr>
 
                             {% endfor %}

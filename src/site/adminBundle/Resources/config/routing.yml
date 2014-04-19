@@ -25,6 +25,11 @@ siteadmin_vol_modifier:
 siteadmin_vol_supprimer:
     pattern: /vol/supprimer/{id}
     defaults: { _controller: siteadminBundle:Vol:supprimer }
+siteadmin_vol_pdf:
+    pattern: /vol/pdf/{id}
+    defaults: { _controller: siteadminBundle:Vol:generatePdf }
+
+
 siteadmin_personnel_lister:
     pattern: /personnel/
     defaults: { _controller: siteadminBundle:personnel:lister }

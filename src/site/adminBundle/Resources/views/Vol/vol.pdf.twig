@@ -1,0 +1,25 @@
+<pdf>
+    <dynamic-page>
+        <div><h1>ID :</h1> {{ vol.id}} </div>
+        <div><h1>ID AVION :</h1> {{ vol.avion.id}} </div>
+        <div><h1>DATE :</h1> {{ vol.date|date('Y-m-d')}} </div>
+        <div><h1>HEURE :</h1> {{ vol.heure|date('H:i')}} </div>
+        <div><h1>DUREE :</h1> {{ vol.duree}} </div>
+        <div><h1>Destination :</h1> {{ vol.destination}} </div>
+        <h1>Personnel :</h1>
+        <table text-align="center">
+            <tr>
+                <td><h3>Nom</h3></td>
+                <td><h3>Prenom</h3></td>
+                <td><h3>Poste</h3></td>
+            </tr>
+        {% for p in vol.personnel %}
+                <tr>
+                <td>{{ p.nom }}</td>
+                <td>{{ p.prenom }}</td>
+                <td>{{ p.poste }}</td>
+                </tr>
+        {% endfor %}
+        </table>
+    </dynamic-page>
+</pdf>

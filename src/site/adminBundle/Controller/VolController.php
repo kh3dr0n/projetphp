@@ -11,6 +11,8 @@ namespace site\adminBundle\Controller;
 use site\adminBundle\Forms\VolForm;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use site\adminBundle\Entity\Vol;
+use Ps\PdfBundle\Annotation\Pdf;
+use Symfony\Component\HttpFoundation\Response;
 
 class VolController extends Controller{
 
@@ -102,5 +104,28 @@ class VolController extends Controller{
         $em->flush();
         return $this->redirect($this->generateUrl('siteadmin_vol_lister'));
 
+    }
+    /**
+     * @Pdf()
+     */
+    function generatePdfAction($id = null){
+
+        $em = $this->container->get('doctrine')->getEntityManager();
+        $vol = $em->find('siteadminBundle:vol',$id);
+        if(!$vol){
+            throw new NotFoundHttpException("Vol non trouvé");
+        }
+
+
+        $facade = $this->get('ps_pdf.facade');
+        $response = new Response();
+        $this->render('siteadminBundle:vol:vol.pdf.twig',array(
+            'vol'=>$vol
+        ),$response);
+        $xml = $response->getContent();
+
+        $content = $facade->render($xml);
+
+        return new Response($content, 200, array('content-type' => 'application/pdf'));
     }
 } 
