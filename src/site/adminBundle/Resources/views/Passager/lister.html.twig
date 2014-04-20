@@ -66,9 +66,9 @@
 
         <h5 class="sidebartitle">Navigation</h5>
         <ul class="nav nav-pills nav-stacked nav-bracket">
-            <li class="active"><a href="index.html"><i class="fa fa-home"></i> <span>Accueil</span></a>
+            <li class=""><a href="{{ path('siteadmin_homepage') }}"><i class="fa fa-home"></i> <span>Accueil</span></a>
             </li>
-            <li class="nav-parent"><a href=""><i class="fa fa-plane"></i> <span>Avion</span></a>
+            <li class="nav-parent"><a href="{{ path('siteadmin_avion_lister') }}"><i class="fa fa-plane"></i> <span>Avion</span></a>
                 <ul class="children">
                     <li><a href="{{ path('siteadmin_avion_lister') }}"><i class="fa fa-list"></i> Lister</a>
                     </li>
@@ -77,9 +77,9 @@
                 </ul>
             </li>
 
-            <li class="nav-parent"><a href=""><i class="fa fa-location-arrow"></i> <span>Vol</span></a>
+            <li class="active nav-parent"><a href=""><i class="fa fa-location-arrow"></i> <span>Vol</span></a>
                 <ul class="children">
-                    <li><a href="{{ path('siteadmin_vol_lister') }}"><i class="fa fa-list"></i> Lister</a>
+                    <li class="active"><a href="{{ path('siteadmin_vol_lister') }}"><i class="fa fa-list"></i> Lister</a>
                     </li>
                     <li><a href="{{ path('siteadmin_vol_ajouter') }}"><i class="fa fa-plus"></i> Ajouter</a>
                     </li>
@@ -230,8 +230,10 @@
     </div>
     <!-- headerbar -->
 
+
     <div class="pageheader">
-        <h2><i class="fa fa-home"></i> Accueil
+        <h2><i class="fa fa fa-location-arrow"></i> Passager
+            <span>Lister</span>
         </h2>
     </div>
 
@@ -241,62 +243,62 @@
 
 
         <div class="row">
+            <div class="panel panel-default">
 
-            <div class="col-sm-6 col-md-3">
-                <div class="panel panel-success panel-stat">
-                    <div class="panel-heading">
+                <div class="panel-body">
+                    <h5 class="subtitle mb5">Liste de passager</h5>
 
-                        <div class="stat">
-                            <div class="row">
-                                <div class="col-xs-4">
-                                    <img src="{{ asset('/images/airplane.png') }}" alt="">
-                                </div>
-                                <div class="col-xs-8">
-                                    <small class="stat-label">Vols en cours</small>
-                                    <h1>{{ volencour }}</h1>
-                                </div>
-                            </div>
-                            <!-- row -->
+                    {{ msg }}
+                    <div class="table-responsive">
+                        <table class="table" id="table1">
+                            <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Nom</th>
+                                <th>Prénom</th>
+                                <th>Sexe</th>
+                                <th>Date de Naissance</th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            {% for a in passagers %}
+                                <tr>
+                                    <td>{{ a.id }}</td>
+                                    <td>{{ a.nom }}</td>
+                                    <td>{{ a.prenom }}</td>
+                                    <td>{{ a.sexe }}</td>
+                                    <td>{{ a.dateNaissance|date('Y-m-d') }}</td>
+                                    <td class="center"><a class="confirmer" href="{{ path('siteadmin_passager_supprimer',{'id':a.id}) }}"><span class="fa fa-times"></span>Suppurimer</a></td>
+                                    <td class="center"><a href="{{ path('siteadmin_passager_modifier',{'id':a.id}) }}"><span class="fa fa-edit"></span> Modifier</a></td>
+                                </tr>
+
+                            {% endfor %}
 
 
-                        </div>
-                        <!-- stat -->
 
-                    </div>
-                    <!-- panel-heading -->
-                </div>
-                <!-- panel -->
+
+                            </tbody>
+                        </table>
+                    </div><!-- table-responsive -->
+
+
+                </div><!-- panel-body -->
+
+
+
+
+
             </div>
-            <!-- col-sm-6 -->
 
-            <div class="col-sm-6 col-md-3">
-                <div class="panel panel-danger panel-stat">
-                    <div class="panel-heading">
-
-                        <div class="stat">
-                            <div class="row">
-                                <div class="col-xs-4">
-                                    <img src="{{ asset('/images/is-user.png') }}" alt="">
-                                </div>
-                                <div class="col-xs-8">
-                                    <small class="stat-label">Places Reservées</small>
-                                    <h1>{{ place|number_format(2) }}%</h1>
-                                </div>
-                            </div>
-                            <!-- row -->
-
-
-                        </div>
-                        <!-- stat -->
-
-                    </div>
-                    <!-- panel-heading -->
-                </div>
-                <!-- panel -->
-            </div>
-            <!-- col-sm-6 -->
 
         </div>
+
+
+
+
 
 
     </div>
@@ -329,7 +331,58 @@
 <script src="{{ asset('/js/chosen.jquery.min.js')}}"></script>
 
 <script src="{{ asset('/js/custom.js')}}"></script>
-<script src="{{ asset('/js/dashboard.js')}}"></script>
+
+
+
+<script>
+    jQuery(document).ready(function() {
+
+        jQuery('#table1').dataTable({
+            "aoColumnDefs": [
+                { "bSortable": false, "aTargets": [ 5,6 ] }
+            ],
+
+            "oLanguage": {
+                "oPaginate": {
+                    "sNext": "Suivant",
+                    "sPrevious":"Précédent",
+                    "sSearch": "Chercher:",
+                    "sLengthMenu": "Afficher _MENU_",
+                    "sInfo": "De _START_ to _END_ à _TOTAL_ records",
+                }
+            }
+        });
+
+
+        // Chosen Select
+        jQuery("select").chosen({
+            'min-width': '100px',
+            'white-space': 'nowrap',
+            disable_search_threshold: 10
+        });
+
+        // Delete row in a table
+        jQuery('.delete-row').click(function(){
+            var c = confirm("Continue delete?");
+            if(c)
+                jQuery(this).closest('tr').fadeOut(function(){
+                    jQuery(this).remove();
+                });
+
+            return false;
+        });
+
+        // Show aciton upon row hover
+        jQuery('.table-hidaction tbody tr').hover(function(){
+            jQuery(this).find('.table-action-hide a').animate({opacity: 1});
+        },function(){
+            jQuery(this).find('.table-action-hide a').animate({opacity: 0});
+        });
+
+
+    });
+</script>
+
 
 </body>
 

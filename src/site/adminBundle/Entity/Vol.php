@@ -47,6 +47,12 @@ class Vol {
      * @Assert\Length(min="3")
      */
     private $destination;
+
+    /**
+     * @ORM\Column(type="string",length=1)
+     * @Assert\Choice(choices = {"A", "R","C","-"})
+     */
+    private $etat;
     /**
      * @ORM\ManyToMany(targetEntity="Personnel")
      */
@@ -219,6 +225,41 @@ class Vol {
     public function getPersonnel()
     {
         return $this->personnel;
+    }
+
+
+    /**
+     * Set etat
+     *
+     * @param string $etat
+     * @return Vol
+     */
+    public function setEtat($etat)
+    {
+        $this->etat = $etat;
+
+        return $this;
+    }
+
+    /**
+     * Get etat
+     *
+     * @return string 
+     */
+    public function getEtat()
+    {
+        return $this->etat;
+    }
+
+
+    public function encour(){
+        $now = time();
+        $d = $this->getDate()->format('Y-m-d').' '.$this->getHeure()->format("H:i");
+        $start = strtotime($d) + 3600;
+        $end = $start + $this->getDuree()*60;
+        //echo $start,' ',$now,' ',$end,'<br>';
+        //echo $d;
+        return $now >= $start && $now <= $end;
     }
 
 }

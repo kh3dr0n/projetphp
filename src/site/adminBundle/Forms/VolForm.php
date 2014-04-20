@@ -45,6 +45,9 @@ class VolForm extends AbstractType{
                 )
             ))
             ->add('destination')
+            ->add('etat','hidden',array(
+                'data'=>'-'
+            ))
             ->add('personnel','entity',array(
                 'class'    => 'siteadminBundle:Personnel',
                 'expanded' => false ,

@@ -105,6 +105,23 @@ class VolController extends Controller{
         return $this->redirect($this->generateUrl('siteadmin_vol_lister'));
 
     }
+    function changeEtatAction($id = null,$etat =null){
+        $em = $this->container->get('doctrine')->getEntityManager();
+        $vol = $em->find('siteadminBundle:vol',$id);
+        if(!$vol){
+            throw new NotFoundHttpException("Vol non trouvé");
+        }
+        $vol->setEtat($etat);
+        $em->persist($vol);
+        $em->flush();
+        return $this->redirect($this->generateUrl('siteadmin_vol_lister'));
+
+    }
+
+
+
+
+
     /**
      * @Pdf()
      */

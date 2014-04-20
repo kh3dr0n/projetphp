@@ -28,6 +28,9 @@ siteadmin_vol_supprimer:
 siteadmin_vol_pdf:
     pattern: /vol/pdf/{id}
     defaults: { _controller: siteadminBundle:Vol:generatePdf }
+siteadmin_vol_etat:
+    pattern: /vol/{id}/{etat}
+    defaults: { _controller: siteadminBundle:Vol:changeEtat }
 
 
 siteadmin_personnel_lister:
@@ -60,6 +63,20 @@ siteadmin_reservation_exporter:
 siteadmin_reservation_exporter_excel:
     pattern: /reservation/exporter/excel
     defaults: { _controller: siteadminBundle:reservation:exportexcel}
+siteadmin_passager_lister:
+    pattern: /passager/
+    defaults: { _controller: siteadminBundle:passager:lister }
+siteadmin_passager_modifier:
+    pattern: /passager/modifier/{id}
+    defaults: { _controller: siteadminBundle:passager:modifier }
+siteadmin_passager_supprimer:
+    pattern: /passager/supprimer/{id}
+    defaults: { _controller: siteadminBundle:passager:supprimer }
+siteadmin_passager_ajouter:
+    pattern: /passager/ajouter
+    defaults: { _controller: siteadminBundle:passager:ajouter }
+
+
 
 #FOS
 fos_user_security:

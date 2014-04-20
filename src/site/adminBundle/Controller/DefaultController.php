@@ -9,6 +9,21 @@ class DefaultController extends Controller
     public function indexAction()
     {
 
+
+        $em = $this->container->get('doctrine')->getEntityManager();
+        $vols = $em->getRepository('siteadminBundle:vol')->FindAll();
+        $r = $this->getDoctrine()->getRepository('siteadminBundle:reservation');
+        $vencour = 0;
+        $place = 0;
+        foreach($vols as $v){
+            $place += (count($r->findByVol($v))/$v->getAvion()->getCapacite())*100;
+            if($v->encour() == true){
+                $vencour++;
+            }
+        }
+        $place = $place/count($vols);
+
+
 //
 //        $discriminator = $this->container->get('pugx_user.manager.user_discriminator');
 //        $discriminator->setClass('site\adminBundle\Entity\Passager');
@@ -40,6 +55,9 @@ class DefaultController extends Controller
 //        $userManager->updateUser($userOne, true);
 
 
-        return $this->render('siteadminBundle:Default:index.html.twig');
+        return $this->render('siteadminBundle:Default:index.html.twig',array(
+            'volencour'=>$vencour,
+            'place'=>$place
+        ));
     }
 }

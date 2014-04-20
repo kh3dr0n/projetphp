@@ -85,7 +85,10 @@ pugx_multi_user:
     passager:
             entity:
               class: site\adminBundle\Entity\Passager
-
+            registration:
+              form:
+                type: site\adminBundle\Forms\Type\PassagerFormType
+              template: siteadminBundle:Passager:ajouter.html.twig
 
 ps_pdf:
     nodes_file: ~
