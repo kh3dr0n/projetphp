@@ -155,7 +155,39 @@
 
                         </div>
                         <div id="inscri" class="tab-pane">
-                            <input type="text" class="form-control" placeholder="Choose photo" />
+
+
+                            <form action="{{ path('sitereservation_inscri') }}" method="post">
+
+
+
+                                <input type="text" id="action_nom" name="nom" required="required" placeholder="Nom" class="form-control mt10 mb10">
+
+                                <input type="text" id="action_nom" name="prenom" required="required" placeholder="Prenom" class="form-control mt10 mb10">
+
+
+
+                                <select id="action_sexe" name="sexe" class="form-control mt10 mb10 input-sm mb15">
+                                    <option value="F">Féminin</option>
+                                    <option value="M">Masculin</option></select>
+
+
+                                    <input type="text" id="dateNaissance" name="dateNaissance" required="required" class="form-control mt10 mb10" placeholder="Date de naissance">
+
+
+                                <input type="text" id="action_nom" name="username" required="required" placeholder="Nom d'utilisateur" class="form-control mt10 mb10">
+
+                                <input type="text" id="action_nom" name="email" required="required" placeholder="email" class="form-control mt10 mb10">
+
+                                <input type="password" id="action_nom" name="password" required="required" placeholder="Mot de passe" class="form-control mt10 mb10">
+
+                                <input type="submit" class="btn btn-default btn-block" id="_submit" name="_submit" value="Inscrire" />
+
+                            </form>
+
+
+
+
                         </div>
                     </div>
 
@@ -187,6 +219,7 @@
 
 <script src="js/jquery-1.10.2.min.js"></script>
 <script src="js/jquery-migrate-1.2.1.min.js"></script>
+<script src="/js/jquery-ui-1.10.3.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/modernizr.min.js"></script>
 <script src="js/jquery.sparkline.min.js"></script>
@@ -202,6 +235,9 @@
 <script>
 
     jQuery(document).ready(function() {
+
+
+        jQuery('#dateNaissance').datepicker();
 
         jQuery('#table1').dataTable({
                 "aoColumnDefs": [

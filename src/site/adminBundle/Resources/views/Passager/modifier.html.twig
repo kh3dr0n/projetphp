@@ -265,33 +265,29 @@
     <div class="panel panel-default">
 
         <div class="panel-body ">
-            <h5 class="subtitle mb5">Ajouter Passager</h5>
+            <h5 class="subtitle mb5">Modifier Passager</h5>
 
-            {% if msg!= '' %}
-            <div class="alert alert-warning">
-                {{ msg }}
-            </div>
 
-            {% endif %}
+
 
 
 
 
             <form class="form-horizontal form-bordered" action="" method="post">
 
-
+                <input type="hidden" value=""/>
 
                 <div class="form-group">
                     <label class="col-sm-3 control-label">Nom :</label>
                     <div class="col-sm-6">
-                        <input type="text" id="action_nom" name="nom" required="required" class="form-control">
-                       </div>
+                        <input type="text" id="action_nom" name="nom" value="{{ nom }}" required="required" class="form-control">
+                    </div>
                 </div>
 
                 <div class="form-group">
                     <label class="col-sm-3 control-label">Prenom :</label>
                     <div class="col-sm-6">
-                        <input type="text" id="action_nom" name="prenom" required="required" class="form-control">
+                        <input type="text" id="action_nom" name="prenom" value="{{ prenom }}" required="required" class="form-control">
                     </div>
                 </div>
 
@@ -301,8 +297,16 @@
                     <div class="col-sm-6">
                         <!-- <input type="text" placeholder="Default Input" class="form-control" /> -->
                         <select id="action_sexe" name="sexe" class="form-control input-sm mb15">
-                            <option value="F">Féminin</option>
-                            <option value="M">Masculin</option></select>
+                            <option
+                                    {% if sexe=='F' %}
+                                    selected="selected"
+                                   {% endif %}
+                                    value="F">Féminin</option>
+                            <option                                     {% if sexe=='M' %}
+                                selected="selected"
+                            {% endif %}
+                                    value="M">Masculin</option>
+                        </select>
                     </div>
                 </div>
 
@@ -311,12 +315,12 @@
                     <div class="col-sm-6">
 
 
-                            <div class="input-group">
-                                <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
 
-                                <input type="text" id="action_dateNaissance" name="dateNaissance" required="required" class="form-control" placeholder="mm/dd/yyyy">
+                            <input type="text" id="action_dateNaissance" value="{{ dn }}" name="dateNaissance" required="required" class="form-control" placeholder="mm/dd/yyyy">
 
-                            </div>
+                        </div>
 
 
 
@@ -325,25 +329,12 @@
 
 
 
-                <div class="form-group">
-                    <label class="col-sm-3 control-label">Nom d'utilisateur :</label>
-                    <div class="col-sm-6">
-                        <input type="text" id="action_nom" name="username" required="required" class="form-control">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="col-sm-3 control-label">Email :</label>
-                    <div class="col-sm-6">
-                        <input type="text" id="action_nom" name="email" required="required" class="form-control">
-                    </div>
-                </div>
 
 
                 <div class="form-group">
                     <label class="col-sm-3 control-label">Mot de passe :</label>
                     <div class="col-sm-6">
-                        <input type="text" id="action_nom" name="password" required="required" class="form-control">
+                        <input type="text" id="action_nom" name="password" class="form-control">
                     </div>
                 </div>
 

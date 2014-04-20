@@ -16,8 +16,9 @@ sitereservation_profile_pass:
 sitereservation_reservation_pdf:
     pattern: /mesreservations/pdf/{id}
     defaults: { _controller: sitereservationBundle:Default:generatePDF }
-
-
+sitereservation_inscri:
+    pattern: /inscription
+    defaults: { _controller : sitereservationBundle:Default:inscri}
 
 
 

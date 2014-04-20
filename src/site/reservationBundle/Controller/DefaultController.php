@@ -114,4 +114,51 @@ class DefaultController extends Controller
         return new Response($content, 200, array('content-type' => 'application/pdf'));
     }
 
+
+    function inscriAction(){
+        $request = $this->container->get('request');
+        if($request->getMethod() == "POST"){
+            $nom = $request->request->get('nom');
+            $prenom = $request->request->get('prenom');
+            $sexe = $request->request->get('sexe');
+            $dn = $request->request->get('dateNaissance');
+            $username = $request->request->get('username');
+            $email = $request->request->get('email');
+            $password = $request->request->get('password');
+
+
+
+            $discriminator = $this->container->get('pugx_user.manager.user_discriminator');
+            $discriminator->setClass('site\adminBundle\Entity\Passager');
+
+            $userManager = $this->container->get('pugx_user_manager');
+
+            if($userManager->findUserByUsername($username))
+                return $this->redirect($this->generateUrl('sitereservation_homepage'));
+            if($userManager->findUserByEmail($email))
+                return $this->redirect($this->generateUrl('sitereservation_homepage'));
+
+            $userOne = $userManager->createUser();
+
+            $userOne->setUsername($username);
+            $userOne->setEmail($email);
+
+            $userOne->setNom($nom);
+            $userOne->setPrenom($prenom);
+            $userOne->setSexe($sexe);
+            $userOne->setDateNaissance(new \DateTime($dn));
+
+            $userOne->setPlainPassword($password);
+            $userOne->setEnabled(true);
+            $userOne->addRole('ROLE_PASSAGER');
+
+            $userManager->updateUser($userOne, true);
+
+
+            return $this->redirect($this->generateUrl('sitereservation_homepage'));
+
+        }
+
+        return $this->redirect($this->generateUrl('sitereservation_homepage'));
+    }
 }

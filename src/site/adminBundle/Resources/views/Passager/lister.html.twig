@@ -263,6 +263,7 @@
                             <thead>
                             <tr>
                                 <th>Id</th>
+                                <th>Nom d'utilisateur</th>
                                 <th>Nom</th>
                                 <th>Prénom</th>
                                 <th>Sexe</th>
@@ -276,6 +277,7 @@
                             {% for a in passagers %}
                                 <tr>
                                     <td>{{ a.id }}</td>
+                                    <td>{{ a.username }}</td>
                                     <td>{{ a.nom }}</td>
                                     <td>{{ a.prenom }}</td>
                                     <td>{{ a.sexe }}</td>
