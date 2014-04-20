@@ -27,6 +27,10 @@ class AvionController extends Controller{
                 if($v->getAvion()->getId() == $a->getId())
                     $a->nbrvol++;
             }
+            if($this->disponible($a))
+                $a->dispo = "Disponible";
+            else
+                $a->dispo = "Non disponible";
         }
 
         return $this->render('siteadminBundle:Avion:lister.html.twig',array(
@@ -111,5 +115,21 @@ class AvionController extends Controller{
         return $this->redirect($this->generateUrl('siteadmin_avion_lister'));
     }
 
+
+    function disponible($avion){
+        //$em = $this->container->get('doctrine')->getEntityManager();
+        //$avion = $em->find('siteadminBundle:Avion',$id);
+        $vrepo = $this->getDoctrine()->getRepository('siteadminBundle:vol');
+        $vols = $vrepo->findBy(
+            array(
+                'Avion'=>$avion)
+    );
+        foreach($vols as $v){
+            if($v->encour()){
+                return false;
+            }
+        }
+        return true;
+    }
 
 } 
