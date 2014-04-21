@@ -262,4 +262,31 @@ class Vol {
         return $now >= $start && $now <= $end;
     }
 
+    public function personnelIsValid(){
+        //{"Commandant du bord", "Copilote", "Stewart", "Hôtesse"})
+        $cb = false;
+        $copilote = false;
+        $stewart = false;
+        $hotesse = false;
+        foreach($this->personnel as $p){
+            switch($p->getposte()){
+                case'Commandant du bord':
+                    $cb = true;
+                    break;
+                case'Copilote':
+                    $copilote = true;
+                    break;
+                case 'Stewart':
+                    $stewart = true;
+                    break;
+                case 'Hôtesse':
+                    $hotesse = true;
+                    break;
+            }
+            if($cb && $copilote && $stewart && $hotesse)
+                return true;
+        }
+        return $cb && $copilote && $stewart && $hotesse;
+    }
+
 }

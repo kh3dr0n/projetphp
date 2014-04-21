@@ -37,6 +37,22 @@ class VolController extends Controller{
         if($request->getMethod() == "POST"){
             $form->bind($request);
             if($form->isValid()){
+                if(!$vol->personnelIsValid())
+                    return $this->container->get('templating')->renderResponse('siteadminBundle:vol:ajouter.html.twig',
+                        array(
+                            'form'=>$form->createView(),
+                            'msg'=>'Liste de personnels non valide'
+
+                        ));
+
+                if($this->aviondispo($vol->getAvion(),$vol->getDate())>0)
+                    return $this->container->get('templating')->renderResponse('siteadminBundle:vol:ajouter.html.twig',
+                        array(
+                            'form'=>$form->createView(),
+                            'msg'=>'Avion Non disponible'
+
+                        ));
+
                 $em = $this->container->get('doctrine')->getEntityManager();
                 $em->persist($vol);
                 $em->flush();
@@ -48,7 +64,8 @@ class VolController extends Controller{
 
         return $this->container->get('templating')->renderResponse('siteadminBundle:vol:ajouter.html.twig',
             array(
-                'form'=>$form->createView()
+                'form'=>$form->createView(),
+                'msg'=>''
 
             )
         );
@@ -76,6 +93,12 @@ class VolController extends Controller{
         if($request->getMethod() == "POST"){
             $form->bind($request);
             if($form->isValid()){
+                if(!$vol->personnelIsValid())
+                    return $this->container->get('templating')->renderResponse('siteadminBundle:vol:ajouter.html.twig',
+                        array(
+                            'form'=>$form->createView(),
+                            'msg'=>'Liste de personnels non valide'
+                        ));
                 $em = $this->container->get('doctrine')->getEntityManager();
                 $em->persist($vol);
                 $em->flush();
@@ -87,7 +110,8 @@ class VolController extends Controller{
 
         return $this->container->get('templating')->renderResponse('siteadminBundle:vol:modifier.html.twig',
             array(
-                'form'=>$form->createView()
+                'form'=>$form->createView(),
+                'msg'=>''
 
             )
         );
@@ -144,5 +168,12 @@ class VolController extends Controller{
         $content = $facade->render($xml);
 
         return new Response($content, 200, array('content-type' => 'application/pdf'));
+    }
+    function aviondispo($avion,$date){
+        $vrepo = $this->getDoctrine()->getRepository('siteadminBundle:vol');
+        return count($vrepo->findBy(array(
+            'Avion'=>$avion,
+            'date'=>new \DateTime($date->format('Y-m-d'))
+        )));
     }
 } 

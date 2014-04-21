@@ -78,20 +78,20 @@
         <ul class="nav nav-pills nav-stacked nav-bracket">
             <li class=""><a href="{{ path('siteadmin_homepage') }}"><i class="fa fa-home"></i> <span>Accueil</span></a>
             </li>
-            <li class="active nav-parent"><a href="{{ path('siteadmin_avion_lister') }}"><i class="fa fa-plane"></i> <span>Avion</span></a>
+            <li class="nav-parent"><a href="{{ path('siteadmin_avion_lister') }}"><i class="fa fa-plane"></i> <span>Avion</span></a>
                 <ul class="children">
-                    <li class="active"><a href="{{ path('siteadmin_avion_lister') }}"><i class="fa fa-list"></i> Lister</a>
+                    <li ><a href="{{ path('siteadmin_avion_lister') }}"><i class="fa fa-list"></i> Lister</a>
                     </li>
                     <li><a href="{{ path('siteadmin_avion_lister') }}"><i class="fa fa-plus"></i> Ajouter</a>
                     </li>
                 </ul>
             </li>
 
-            <li class="nav-parent"><a href=""><i class="fa fa-location-arrow"></i> <span>Vol</span></a>
+            <li class="active nav-parent"><a href=""><i class="fa fa-location-arrow"></i> <span>Vol</span></a>
                 <ul class="children">
                     <li><a href="{{ path('siteadmin_vol_lister') }}"><i class="fa fa-list"></i> Lister</a>
                     </li>
-                    <li><a href="{{ path('siteadmin_vol_ajouter') }}"><i class="fa fa-plus"></i> Ajouter</a>
+                    <li  class="active"><a href="{{ path('siteadmin_vol_ajouter') }}"><i class="fa fa-plus"></i> Ajouter</a>
                     </li>
                 </ul>
             </li>
@@ -266,6 +266,14 @@
                 <div class="panel-body ">
                     <h5 class="subtitle mb5">Ajouter Vol</h5>
 
+
+
+                    {% if msg!= '' %}
+
+                        <div class="alert alert-warning">
+                                {{ msg }}
+                        </div>
+                    {% endif %}
 
 
 
