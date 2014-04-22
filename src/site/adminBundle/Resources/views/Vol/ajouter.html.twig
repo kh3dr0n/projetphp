@@ -602,6 +602,8 @@
 
     jQuery(document).ready(function(){
 
+        jQuery('#destination').children('[value="' + jQuery('{{ form_widget(form.destination) }}').val() + '"]').attr('selected','true');
+
         jQuery(".chosen-select").chosen({'width':'100%','white-space':'nowrap'});
 
         jQuery('#action_date').datepicker();

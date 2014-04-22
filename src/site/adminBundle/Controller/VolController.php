@@ -53,6 +53,17 @@ class VolController extends Controller{
 
                         ));
 
+                foreach($vol->getPersonnel() as $p){
+                    if($this->personneldispo($p,$vol->getDate())>0)
+                        return $this->container->get('templating')->renderResponse('siteadminBundle:vol:ajouter.html.twig',
+                            array(
+                                'form'=>$form->createView(),
+                                'msg'=>$p.' est non disponible'
+
+                            ));
+
+                }
+
                 $em = $this->container->get('doctrine')->getEntityManager();
                 $em->persist($vol);
                 $em->flush();
@@ -124,6 +135,11 @@ class VolController extends Controller{
             throw new NotFoundHttpException("Vol non trouvé");
         }
 
+        //$rrepo = $this->getDoctrine()->getRepository('siteadminBundle:reservation');
+
+
+
+
         $em->remove($vol);
         $em->flush();
         return $this->redirect($this->generateUrl('siteadmin_vol_lister'));
@@ -175,5 +191,17 @@ class VolController extends Controller{
             'Avion'=>$avion,
             'date'=>new \DateTime($date->format('Y-m-d'))
         )));
+    }
+    function personneldispo($personnel,$date){
+        $vrepo = $this->getDoctrine()->getRepository('siteadminBundle:vol');
+        $vols =$vrepo->findBy(array(
+            'date'=>new \DateTime($date->format('Y-m-d'))
+        ));
+        foreach($vols as $v){
+            foreach($v->getPersonnel() as $p)
+                if($p->getId() == $personnel->getId())
+                    return 1;
+        }
+        return 0;
     }
 } 
