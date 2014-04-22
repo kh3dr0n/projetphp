@@ -23,5 +23,10 @@ security:
         - { path: /admin/*, role: ROLE_ADMIN }
         - { path: /reserver/*, role: ROLE_PASSAGER }
         - { path: /admin/profile/change-password, role: ROLE_USER}
+        - { path: /mesreservations, role: ROLE_PASSAGER}
+        - { path: /profile, role: ROLE_PASSAGER}
+        - { path: /logout, role: ROLE_PASSAGER}
+        - { path: /reserver, role: ROLE_PASSAGER}
+
 #        - { path: admin/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
 #        - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
