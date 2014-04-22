@@ -23,41 +23,16 @@ class DefaultController extends Controller
         }
         $place = $place/count($vols);
 
+        $nbr=0;
 
-//
-//        $discriminator = $this->container->get('pugx_user.manager.user_discriminator');
-//        $discriminator->setClass('site\adminBundle\Entity\Passager');
-//
-//        $userManager = $this->container->get('pugx_user_manager');
-//
-//        $userOne = $userManager->createUser();
-//
-//        $userOne->setUsername('test');
-//        $userOne->setEmail('testr@mail.com');
-//
-//        $userOne->setNom('Nom');
-//        $userOne->setPrenom('Prenom');
-//        $userOne->setSexe('M');
-//        $userOne->setDateNaissance(new \DateTime('01-01-1990'));
-//
-//        $userOne->setPlainPassword('test');
-//        $userOne->setEnabled(true);
-//        $userOne->addRole('ROLE_PASSAGER');
-//
-//        $userManager->updateUser($userOne, true);
-//
-//        $userOne = $userManager->createUser();
-//        $userOne->setUsername('passager');
-//        $userOne->setEmail('user@mail.com');
-//        $userOne->setPlainPassword('user');
-//        $userOne->setEnabled(true);
-//
-//        $userManager->updateUser($userOne, true);
+        $nbr = count($r->findByEtat('A'));
+
 
 
         return $this->render('siteadminBundle:Default:index.html.twig',array(
             'volencour'=>$vencour,
-            'place'=>$place
+            'place'=>$place,
+            'nbr'=>$nbr
         ));
     }
 }

@@ -135,86 +135,6 @@
 
                 <li>
                     <div class="btn-group">
-                        <button class="btn btn-default dropdown-toggle tp-icon" data-toggle="dropdown">
-                            <i class="glyphicon glyphicon-globe"></i>
-                            <span class="badge">5</span>
-                        </button>
-                        <div class="dropdown-menu dropdown-menu-head pull-right">
-                            <h5 class="title">You Have 5 New Notifications</h5>
-                            <ul class="dropdown-list gen-list">
-                                <li class="new">
-                                    <a href="">
-                                                <span class="thumb">
-                                                    <img src="images/photos/user4.png" alt="" />
-                                                </span>
-                                                <span class="desc">
-                                                    <span class="name">Zaham Sindilmaca
-                                                        <span class="badge badge-success">new</span>
-                                                    </span>
-                                                    <span class="msg">is now following you</span>
-                                                </span>
-                                    </a>
-                                </li>
-                                <li class="new">
-                                    <a href="">
-                                                <span class="thumb">
-                                                    <img src="images/photos/user5.png" alt="" />
-                                                </span>
-                                                <span class="desc">
-                                                    <span class="name">Weno Carasbong
-                                                        <span class="badge badge-success">new</span>
-                                                    </span>
-                                                    <span class="msg">is now following you</span>
-                                                </span>
-                                    </a>
-                                </li>
-                                <li class="new">
-                                    <a href="">
-                                                <span class="thumb">
-                                                    <img src="images/photos/user3.png" alt="" />
-                                                </span>
-                                                <span class="desc">
-                                                    <span class="name">Veno Leongal
-                                                        <span class="badge badge-success">new</span>
-                                                    </span>
-                                                    <span class="msg">likes your recent status</span>
-                                                </span>
-                                    </a>
-                                </li>
-                                <li class="new">
-                                    <a href="">
-                                                <span class="thumb">
-                                                    <img src="images/photos/user3.png" alt="" />
-                                                </span>
-                                                <span class="desc">
-                                                    <span class="name">Nusja Nawancali
-                                                        <span class="badge badge-success">new</span>
-                                                    </span>
-                                                    <span class="msg">downloaded your work</span>
-                                                </span>
-                                    </a>
-                                </li>
-                                <li class="new">
-                                    <a href="">
-                                                <span class="thumb">
-                                                    <img src="images/photos/user3.png" alt="" />
-                                                </span>
-                                                <span class="desc">
-                                                    <span class="name">Nusja Nawancali
-                                                        <span class="badge badge-success">new</span>
-                                                    </span>
-                                                    <span class="msg">send you 2 messages</span>
-                                                </span>
-                                    </a>
-                                </li>
-                                <li class="new"><a href="">See All Notifications</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="btn-group">
                         <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                             Admin
                             <span class="caret"></span>
@@ -265,6 +185,7 @@
                                     <h1>{{ volencour }}</h1>
                                 </div>
                             </div>
+                            <div class="mb15"></div>
                             <!-- row -->
 
 
@@ -292,6 +213,7 @@
                                     <h1>{{ place|number_format(2) }}%</h1>
                                 </div>
                             </div>
+                            <div class="mb15"></div>
                             <!-- row -->
 
 
@@ -304,6 +226,32 @@
                 <!-- panel -->
             </div>
             <!-- col-sm-6 -->
+
+
+
+
+            <div class="col-sm-6 col-md-3">
+                <div class="panel panel-primary panel-stat">
+                    <div class="panel-heading">
+
+                        <div class="stat">
+                            <div class="row">
+                                <div class="col-xs-4">
+                                    <img src="{{ asset('images/is-document.png')}}" alt="">
+                                </div>
+                                <div class="col-xs-8">
+                                    <small class="stat-label">Réservations en attentes</small>
+                                    <h1>{{ nbr }}</h1>
+                                </div>
+                            </div><!-- row -->
+
+                            <div class="mb15"></div>
+
+                        </div><!-- stat -->
+
+                    </div><!-- panel-heading -->
+                </div><!-- panel -->
+            </div>
 
         </div>
 
