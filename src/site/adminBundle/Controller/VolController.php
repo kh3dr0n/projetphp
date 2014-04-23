@@ -135,10 +135,11 @@ class VolController extends Controller{
             throw new NotFoundHttpException("Vol non trouvé");
         }
 
-        //$rrepo = $this->getDoctrine()->getRepository('siteadminBundle:reservation');
-
-
-
+        $rrepo = $em->getRepository('siteadminBundle:reservation');
+        $reservations = $rrepo->findby(array('vol'=>$vol));
+        foreach($reservations as $r ){
+            $em->remove($r);
+        }
 
         $em->remove($vol);
         $em->flush();

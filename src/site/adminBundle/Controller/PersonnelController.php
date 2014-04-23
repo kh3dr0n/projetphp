@@ -95,6 +95,16 @@ class PersonnelController extends Controller{
             throw new NotFoundHttpException("Vol non trouvé");
         }
 
+
+        $vrepo = $em->getRepository('siteadminBundle:vol');
+        //$vol = $vrepo->findby(array('personnel'=>$personnel));
+        $vol = $vrepo->findAll();
+        foreach($vol as $r ){
+            foreach($r->getPersonnel() as $p)
+                if($p->getId() == $personnel->getId())
+                    $em->remove($r);
+        }
+
         $em->remove($personnel);
         $em->flush();
         return $this->redirect($this->generateUrl('siteadmin_personnel_lister'));

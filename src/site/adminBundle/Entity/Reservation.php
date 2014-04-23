@@ -22,12 +22,12 @@ class Reservation {
      */
     private $id;
     /**
-     * @ORM\ManyToOne(targetEntity="Passager",cascade={"remove", "persist"})
+     * @ORM\ManyToOne(targetEntity="Passager")
      * @Assert\NotBlank()
      */
     private $passager;
     /**
-     * @ORM\ManyToOne(targetEntity="Vol",cascade={"remove", "persist"})
+     * @ORM\ManyToOne(targetEntity="Vol")
      * @Assert\NotBlank()
      */
     private $vol;

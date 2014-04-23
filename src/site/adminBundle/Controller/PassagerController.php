@@ -29,10 +29,17 @@ class PassagerController extends Controller {
             throw new NotFoundHttpException("Vol non trouvé");
         }
         $user = $em->find('siteadminBundle:user',$id);
+
+
+        $rrepo = $em->getRepository('siteadminBundle:reservation');
+        $reservations = $rrepo->findby(array('passager'=>$passager));
+        foreach($reservations as $r ){
+            $em->remove($r);
+        }
         $em->remove($passager);
         $em->remove($user);
         $em->flush();
-        return $this->redirect($this->generateUrl('siteadmin_personnel_lister'));
+        return $this->redirect($this->generateUrl('siteadmin_passager_lister'));
     }
     function modifierAction($id = null){
         $request = $this->container->get('request');

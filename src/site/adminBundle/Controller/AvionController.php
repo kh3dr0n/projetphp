@@ -109,6 +109,15 @@ class AvionController extends Controller{
         if(!$avion){
             throw new NotFoundHttpException("Acteur non trouvé");
         }
+        $vrepo = $em->getRepository('siteadminBundle:vol');
+        $rrepo = $em->getRepository('siteadminBundle:vol');
+        $vol = $vrepo->findby(array('avion'=>$avion));
+        foreach($vol as $v){
+            $reservations = $rrepo->findby(array('vol'=>$v));
+            foreach($reservations as $r ){
+                $em->remove($r);
+            }
+        }
 
         $em->remove($avion);
         $em->flush();
