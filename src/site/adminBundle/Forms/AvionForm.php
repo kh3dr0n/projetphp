@@ -17,7 +17,7 @@ class AvionForm extends AbstractType{
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('capacite','text',array('attr'=>array('class'=>'form-control')))
+            ->add('capacite','number',array('attr'=>array('class'=>'form-control')))
             ->add('model','text',array('attr'=>array('class'=>'form-control')))
         ;
     }
